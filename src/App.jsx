@@ -1,11 +1,12 @@
 import './Styles/main.scss';
-import './Component/Header'
 import Header from './Component/Header';
+import Layout from './Page/layout';
 
 function App() {
   return (
     <div className="App">
       <Header/>
+      <Layout/>
     </div>
   );
 }
