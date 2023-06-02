@@ -30,7 +30,21 @@ function Structure() {
     }
     return (
         <main>
-            <form onSubmit={AddGame}>
+            <div className="descriptionContainer">
+                <h2 className="descriptionContainer__title">
+                    Suivez et gérez votre liste de Jeux Vidéos !!
+                </h2>
+                <p className="descriptionContainer__text">
+                    Vous souhaitez consulter à tous moment votre ludothèque, la trier, la compléter? Vous
+                    êtes au bon endroit !! Plus de risque d'acheter un jeu en double par mégarde ici vous pouvez :
+                </p>
+                <ul className="descriptionContainer__list">
+                    <li>Ajouter</li>
+                    <li>Trier</li>
+                    <li>Modifier</li>
+                </ul>
+            </div>
+            <form onSubmit={AddGame} className="formContainer">
                 <label htmlFor="jeu">Jeu : </label>
                 <input type="text" id="jeu" name="jeu" />
                 <label htmlFor="plateforme">Plateforme : </label>
@@ -56,7 +70,7 @@ function Structure() {
                             <li>{game.plateforme}</li>
                             <li>{game.obtention}</li>
                         </ul>
-                        
+
                     ))}
                 </ul>
 

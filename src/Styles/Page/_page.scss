@@ -1,0 +1,45 @@
+.descriptionContainer{
+    margin-bottom: 20px;
+    &__title{
+        font-size : 1.1em;
+        color: $primarycolor;
+    }
+    &__text{
+        font-size: 16px;
+    }
+    &__list{
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        font-size: 16px;
+    }
+}
+
+.formContainer{
+    & label{
+        display: inline-block;
+        width: 50%;
+        margin-bottom: 10px;
+        text-decoration: underline;
+        text-decoration-color: $secondarycolor;
+    }
+    & input{
+        width : 90%;
+        margin-bottom: 10px;
+        height : 30px;
+        border-radius: 10px;
+    }
+    & select{
+        width : 92%;
+        margin-bottom: 10px; 
+        height : 40px;
+        border-radius: 10px;
+    }
+    & button{
+        width: 50%;
+        height: 50px;
+        margin-left: 20%;
+        border-radius: 15px;
+    }
+}
