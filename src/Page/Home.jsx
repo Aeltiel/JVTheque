@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-//structure sémantique de la page
 function Structure() {
     //state pour enregistré les données du formulaire sous forme de tableau d'objet
     const [dataGame, setDataGame] = useState([]);
@@ -50,30 +49,31 @@ function Structure() {
                 <label htmlFor="plateforme">Plateforme : </label>
                 <select id="plateforme" name="plateforme">
                     <option value="">Choisi la plateforme de ton jeu</option>
-                    <option value="switch">Switch</option>
-                    <option value="ds">DS</option>
-                    <option value="3ds">3 DS</option>
+                    <option value="Switch">Switch</option>
+                    <option value="DS">DS</option>
+                    <option value="3DS">3 DS</option>
                 </select>
                 <label htmlFor="obtenu">Obtenu : </label>
                 <select id="obtenu" name="obtenu">
                     <option value=""></option>
-                    <option value="true">Oui</option>
-                    <option value="flase">Non</option>
+                    <option value="Oui">Oui</option>
+                    <option value="Non">Non</option>
                 </select>
                 <button>Ajouter</button>
             </form>
             <div className="listContainer">
-                <ul>
-                    {dataGame.map(game => (
-                        <ul key={game.id}>
-                            <li>{game.game}</li>
-                            <li>{game.plateforme}</li>
-                            <li>{game.obtention}</li>
-                        </ul>
-
-                    ))}
-                </ul>
-
+                <h3 className="listContainer__title">
+                    <i className="fa-solid fa-clipboard-list"></i>
+                    Vos Jeux : </h3>
+                {dataGame.map(game => (
+                    <ul className="cardGame" key={game.id}>
+                        <li className="cardGame--item--1">{game.game}</li>
+                        <li className="cardGame--item">{game.plateforme}</li>
+                        <li className="cardGame--item">{game.obtention}</li>
+                        <li className="cardGame--item"><i className="fa-solid fa-trash-can"></i></li>
+                        <li className="cardGame--item"><i className="fa-solid fa-pen-fancy"></i></li>
+                    </ul>
+                ))}
             </div>
         </main>
     )

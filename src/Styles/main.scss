@@ -1,5 +1,9 @@
 @import './utils/variable';
 @import './utils/mixins';
+@import './utils/keyframes';
+@import './Composant/header';
+@import './Composant/navBar';
+@import './Composant/footer';
+@import './Composant/cardGame';
 @import './Page/general';
-@import './Page/header';
 @import './Page/page';

@@ -40,6 +40,18 @@
         width: 50%;
         height: 50px;
         margin-left: 20%;
-        border-radius: 15px;
+        border-radius: 20px;
+        background-color: $secondarycolor;
+        color: white;
+        border: none;
     }
+}
+.listContainer{
+    margin-top: 50px;
+    &__title{
+        color: $primarycolor;
+    }
+}
+.fa-clipboard-list{
+    margin-right: 15px;
 }
