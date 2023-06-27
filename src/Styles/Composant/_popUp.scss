@@ -1,0 +1,32 @@
+.popUp {
+    &__container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+    &__box{
+        width: 100%;
+        height: 30%;
+        position: relative;
+    }
+    &__closebtn{
+        position: absolute;
+        top: 3%;
+        right: 2%;
+        border: none;
+        background-color: transparent;
+        color: white;
+    }
+    &__content{
+        height: 100%;
+        padding-top: 20px;
+        @include gradientBlue;
+    }
+}

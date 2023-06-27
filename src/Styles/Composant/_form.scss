@@ -1,22 +1,5 @@
-.descriptionContainer{
-    margin-bottom: 20px;
-    &__title{
-        font-size : 1.1em;
-        color: $primarycolor;
-    }
-    &__text{
-        font-size: 16px;
-    }
-    &__list{
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        padding: 0;
-        font-size: 16px;
-    }
-}
-
 .formContainer{
+    text-align: center;
     & label{
         display: inline-block;
         width: 50%;
@@ -39,19 +22,9 @@
     & button{
         width: 50%;
         height: 50px;
-        margin-left: 20%;
         border-radius: 20px;
         background-color: $secondarycolor;
         color: white;
         border: none;
     }
-}
-.listContainer{
-    margin-top: 50px;
-    &__title{
-        color: $primarycolor;
-    }
-}
-.fa-clipboard-list{
-    margin-right: 15px;
 }

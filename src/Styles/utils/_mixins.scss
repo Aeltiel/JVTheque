@@ -1,0 +1,3 @@
+@mixin gradientBlue{
+    background: linear-gradient($primarycolor, darken($primarycolor, 15%));
+}
