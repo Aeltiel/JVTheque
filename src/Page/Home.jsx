@@ -1,37 +1,9 @@
-import { useState } from "react"
-import PopUp from "../Component/popUp";
+
+import ModalBtn from "../Component/ModalBtn";
 import SignIn from "../Component/Forms/SignIn";
 import LogIn from "../Component/Forms/LogIn";
 
 function Home() {
-    const [signBtn, setsignBtn] = useState(false);
-    const [logInBtn, setLogInBtn] = useState(false);
-    
-    const signIn = () => {
-        setsignBtn(!signBtn);
-    }
-    const logIn = () => {
-        setLogInBtn(!logInBtn);
-    } 
-
-    function signInView(){
-        if(signBtn === true){
-            return(
-                <PopUp 
-                content = {<SignIn />}
-                />
-            )
-        }
-    }
-    function logInView(){
-        if(logInBtn === true){
-            return(
-                <PopUp 
-                content = {<LogIn />}
-                />
-            )
-        }
-    }
 
     return (
         <main>
@@ -56,14 +28,18 @@ function Home() {
 
             <div className="connexion">
                 <p className="connexion__text">Vous êtes nouveau ? Inscrivez-vous : </p>
-                <button className="btn" onClick={signIn}>
-                S'inscrire</button>
+                <ModalBtn 
+                text={"S'inscrire"}
+                content={<SignIn/>}
+                />
 
                 <p className="connexion__text">Nouveau membre ? Connectez-vous : </p>
-                <button className="btn"onClick={logIn}>Se connecter</button>
+                <ModalBtn 
+                text={"Se Connecter"}
+                content={<LogIn/>}
+                />
             </div>
-            {signInView()}
-            {logInView()}
+            
 
             
         </main>

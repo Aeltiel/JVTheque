@@ -24,6 +24,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 const userRoutes = require('./routes/rUser');
 
 app.use('/api/auth', userRoutes);

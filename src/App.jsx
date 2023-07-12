@@ -1,6 +1,6 @@
 import './Styles/main.scss';
-import Header from './Component/Header';
-import Footer from './Component/Footer';
+import Header from './Component/Layout/Header';
+import Footer from './Component/Layout/Footer';
 import Home from './Page/Home';
 import UserPage from './Page/UserPage';
 import {Routes, Route} from 'react-router-dom';
