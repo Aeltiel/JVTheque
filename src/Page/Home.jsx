@@ -1,4 +1,3 @@
-
 import ModalBtn from "../Component/ModalBtn";
 import SignIn from "../Component/Forms/SignIn";
 import LogIn from "../Component/Forms/LogIn";
@@ -40,8 +39,11 @@ function Home() {
                 />
             </div>
             
+        <section className="actualité">
 
-            
+        </section>
+            <h2 className="descriptionContainer__title">Les dernières actualités du site</h2>
+            <p>En cours de construction</p>
         </main>
     )
 }
