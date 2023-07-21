@@ -6,11 +6,12 @@ const User = require('../models/mUser');
 const token = process.env.TOKEN;
 
 exports.signup = (req, res, next) => {
-    let statut = validator.validate(res.body.email);
+    let statut = validator.validate(req.body.email);
     if (statut === true) {
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
                 const user = new User({
+                    pseudo : req.body.pseudo,
                     email: req.body.email,
                     password: hash
                 });
@@ -24,8 +25,8 @@ exports.signup = (req, res, next) => {
     }
 };
 
-exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })
+/*exports.login = (req, res, next) => {
+    User.findOne({ mail: req.body.mail })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ message: "Identifiant ou mot de passe incorrect" })
@@ -35,9 +36,9 @@ exports.login = (req, res, next) => {
                 token: jwt.sign(
                     { userId: user._id },
                     token,
-                    { exoiresIn: '24h' }
+                    { expiresIn: '24h' }
                 )
             })
         })
         .catch(error => res.status(500).json({ error }))
-};
+};*/

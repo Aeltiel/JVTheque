@@ -1,21 +1,29 @@
 import { useState } from "react";
 function SignIn() {
     const [signIn, setSignIn] = useState();
+    const [pseudo, setPseudo] = useState(false);
     const [mail, setMail] = useState(false);
     const [mdp, setMdp] = useState(false);
 
+    let newUser ={}
+
     let regMail = new RegExp("[a-z0-9\\-_]+[a-z0-9\\.\\-_]*@[a-z0-9\\-_]{2,}\\.[a-z\\.\\-_]+[a-z\\-_]+");
     let regMdp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^<>]{8,}$/;
-    
+    let regPseudo = /^[a-zA-Z0-9_-]{1,20}$/;
+
+
+
     //fonction pour géré la logique du formulaire
     function form(event) {
         event.preventDefault(); //Pour empêcher le rechargement de la page
-        let identifiant = event.target.identifiant.value;
+
+        //variable pour récupéré les données des inputs du formulaire
+        let pseudoForm = event.target.pseudoForm.value;
+        let email = event.target.email.value;
         let password = event.target.password.value;
         
-        console.log(identifiant)
-        console.log(password)
-        if (regMail.test(identifiant) === false || identifiant === "") {
+        //vérification des données
+        if (regMail.test(email) === false || email === "") {
             setMail(false)
             alert('Votre adresse mail est incorrect');
             event.preventDefault();
@@ -24,22 +32,45 @@ function SignIn() {
             setMdp(false);
             alert('Votre mot de passe doit comporter : 8 caractères dont au moins une minuscule, une majuscule et un chiffre')
             event.preventDefault();
-        }else {
+        }
+        if(regPseudo.test(pseudoForm) === false || pseudoForm === ""){
+            setPseudo(false);
+            alert('Votre Pseudo ne doit pas faire plus de 20 caractères')
+            event.preventDefault();
+        }
+        else {
             setMail(true)
             setMdp(true)
-            const newUser = {
-                id: identifiant,
+            setPseudo(true)
+             newUser = {
+                pseudo : pseudoForm,
+                email: email,
                 password: password
             }
-            setSignIn(newUser)
-            console.log(newUser)
+            setSignIn(newUser)   
         }
+        console.log(newUser)
+        console.log(signIn)
+        if(pseudo===true && mail===true && mdp===true){
+            fetch("http://localhost:3000/api/auth/signup",
+            {
+                method : 'POST',
+                headers : {'Content-Type' : 'application/json'},
+                body : JSON.stringify(signIn)
+            })
+        .then(response => response.json())
+        .then(data => {console.log('Félications, vous êtes bien enregistré')})
+        .catch (error =>{console.log(error)})
+        }
+      
 
     }
     return (
         <form className="formContainer" onSubmit={form} noValidate>
-            <label htmlFor="identifiant">Votre mail : </label>
-            <input type="email" name="identifiant" id="identifiant" required/>
+            <label htmlFor="pseudoForm">Votre pseudo : </label>
+            <input type="text" name="pseudoForm" id="pseudoForm" required />
+            <label htmlFor="email">Votre mail : </label>
+            <input type="email" name="email" id="email" required/>
             <label htmlFor="password">Créer votre mot de passe : </label>
             <input type="password" name="password" id="password" required />
             <button>Envoyer</button>
