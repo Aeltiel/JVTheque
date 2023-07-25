@@ -1,9 +1,10 @@
+import {Routes, Route} from 'react-router-dom';
 import './Styles/main.scss';
+import AuthRoute from './Authentification/AuthRoute';
 import Header from './Component/Layout/Header';
 import Footer from './Component/Layout/Footer';
 import Home from './Page/Home';
 import UserPage from './Page/UserPage';
-import {Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/userPage' element={<UserPage/>}/>
+        <AuthRoute path='/userPage' element={<UserPage/>}/>
       </Routes>
       <Footer/>
     </div>

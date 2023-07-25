@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Authentification/AuthContext";
 
 
 /*
-Pour plus tard : quand j'aurais la bdd rajouter le fetch pour récupéré la lsite des identifiants
+Pour plus tard : quand j'aurais la bdd rajouter le fetch pour récupéré la liste des identifiants
 afin de trouver le log entrer et le comparer pour voir s'il est correct puis envoyer l'accès à la page user
  */
 function LogIn() {
     const [LogIn, setLogIn] = useState();
+    const navigate = useNavigate();
+    const {updateToken} = useAuth()//me permet d'appeler la fonction updateToken du hook
+    
     //fonction pour géré la logique du formulaire
     function form(event) {
         event.preventDefault(); //Pour empêcher le rechargement de la page
@@ -21,6 +26,7 @@ function LogIn() {
 
         setLogIn(newUser)
         console.log(newUser)
+       navigate("/userPage")
 
     }
     return (

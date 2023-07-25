@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 function UserPage(){
 //state pour enregistré les données du formulaire sous forme de tableau d'objet
 const [dataGame, setDataGame] = useState([]);
