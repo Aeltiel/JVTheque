@@ -12,7 +12,7 @@ function LogIn() {
     const navigate = useNavigate();
     const {updateToken}  = useAuth()//me permet d'appeler la fonction updateToken du hook
     let user = {}
-console.log(updateToken)
+
     //fonction pour géré la logique du formulaire
     function form(event) {
         event.preventDefault(); //Pour empêcher le rechargement de la page
@@ -36,7 +36,8 @@ console.log(updateToken)
                     console.log(data)
                     if (data) {
                         const token = data.token;
-                        updateToken(token);//permet de récupéré et d'enregistré le token renvoyé par l'api
+                        const userId = data.userId;
+                        updateToken(token, userId);//permet de récupéré et d'enregistré le token renvoyé par l'api
                         console.log("connextion réussie !")
                         navigate("/userPage")
                     } else {

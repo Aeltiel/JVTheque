@@ -26,7 +26,9 @@ app.use((req, res, next) => {
 
 
 const userRoutes = require('./routes/rUser');
+const gameRoutes = require('./routes/rGame');
 
 app.use('/api/auth', userRoutes);
+app.use('/api/game', gameRoutes);
 
 module.exports = app;
