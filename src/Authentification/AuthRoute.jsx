@@ -1,4 +1,4 @@
-import { Route, useNavigate } from "react-router-dom";
+import {  Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 /*
@@ -6,13 +6,12 @@ Ce fichier, sert à privatiser les routes afin que seul les personnes authentifi
 y accéder. POur cela on récupère le token, et on fait une ternaire. Si le token est bon
 on accède à la page voulu, sinon, on est renvoyer vers la page d'accueil
 */
-function AuthRoute({path, element}){ //les props ici vont être remplacer par le chemin adéquat
-    const {token} = useAuth();
-    const navigate = useNavigate();
+function AuthRoute({ children }) { //la props sert a afficher le composant page voulu
+    const { token } = useAuth();
 
-    return token ? (
-        <Route path={path} element={element}/>
-    ) : ( navigate("/"));
+    return token ?
+        children
+        : <Navigate to="/" />;
 }
 
 export default AuthRoute;

@@ -9,11 +9,6 @@ de page
 
 const AuthContext = createContext(); //création du contexte d'authentification
 
-//création d'un hook personnaliser pour utiliser mon context partout où j'en ai besoin
-export function useAuth() {
-    return useContext(AuthContext);
-}
-
 //le provider qui va englober mon application et permettre l'usage du hook personnaliser partout où il faut
 export function AuthProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -24,9 +19,13 @@ export function AuthProvider({ children }) {
         localStorage.setItem('token', newToken);
     }
     return (
-        <AuthContext.Provider value={{ token, setToken }}>
+        <AuthContext.Provider value={{ token, setToken, updateToken }}>
             {children}
         </AuthContext.Provider>
     )
 }
 
+//création d'un hook personnaliser pour utiliser mon context partout où j'en ai besoin
+export function useAuth() {
+    return useContext(AuthContext);
+}

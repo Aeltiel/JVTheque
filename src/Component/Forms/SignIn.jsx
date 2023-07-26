@@ -20,7 +20,7 @@ function SignIn() {
         event.preventDefault(); //Pour empêcher le rechargement de la page
 
         //variable pour récupéré les données des inputs du formulaire
-        //Important : bien faire coincider les noms des variables et des élément form au model
+        //Important : bien faire coincider les noms des variables et des éléments form au model
         //du backend, sinon ça provoque une erreur 400
         let pseudoForm = event.target.pseudoForm.value;
         let email = event.target.email.value;
