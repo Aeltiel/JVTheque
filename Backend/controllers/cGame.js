@@ -1,12 +1,11 @@
 const Game = require('../models/mGame');
 
 exports.createGame = (req, res, next) => {
-    const gameObject = JSON.parse(req.body.game);
-    console.log(gameObject);
+    const gameObject = req.body;
     delete gameObject._id;
     const game = new Game({
         ...gameObject,
-        userId : req.auth.userId,       
+        userId : req.auth.userId,  
     });
     game.save()
     .then(() =>{
@@ -22,11 +21,11 @@ exports.getAllGame = (req, res, next) =>{
 }
 
 exports.modifyGame = (req, res, next) =>{
-    const gameObject = JSON.parse(req.body.game);
-    delete gameObject._userId;
+    const gameObject = req.body;
+    delete gameObject._id;
     Game.findOne({_id: req.params.id})
     .then((game)=>{
-        if(game.userId != req.auth.userId){
+        if(game.userId !== req.auth.userId){
             res.status(401).json({ message : "Modification non authorisé !"})
         } else{
             Game.updateOne({_id : req.params.id}, {...gameObject, _id : req.params.id})
@@ -40,7 +39,7 @@ exports.modifyGame = (req, res, next) =>{
 exports.deleteGame = (req, res, next) =>{
     Game.findOne({_id : req.params.id})
     .then(game =>{
-        if(game.userId != req.auth.userId){
+        if(game.userId !== req.auth.userId){
             res.status(401).json({ message: "Suppression non authorisé" })  
         }else{
             Game.deleteOne({_id : req.params.id})
