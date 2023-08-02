@@ -24,6 +24,5 @@ Les fichiers react sont triés de la manière suivante :
 -Un dossier "Component" qui est subdivisé en plusieurs sous dossiers pour trier les composants.
 
 note : 
--peut mettre le package pour valider le password coté back et faire la même écriture que pour la validaiton de mon email
 -rajouter l'authentification pour le link dans la navbar afin de proposé une alternative quand on est pas connecté : 
     -refaire le bouton de co dans la navbar sous forme de burger ou autre
