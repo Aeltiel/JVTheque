@@ -1,0 +1,20 @@
+.delete{
+    &__Container{
+        width: 70%;
+        height: 90%;
+        margin: auto;
+    }
+    &__btnContainer{
+        margin-top: 120px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__btn{
+        border-radius: 5px;
+        border: none;
+        height: 40px;
+        width: 100px;
+        background-color: $secondarycolor;
+        color: white;
+    }
+}

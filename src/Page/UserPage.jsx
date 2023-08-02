@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../Authentification/AuthContext";
 import AddGame from "../Component/Forms/AddGame";
+import DeleteGame from "../Component/DeleteGame";
+import ModalBtn from "../Component/ModalBtn";
 
 function UserPage() {
   const [gameData, setGameData] = useState();
@@ -56,11 +58,17 @@ function UserPage() {
               <li className="cardGame--item--1">{game.game}</li>
               <li className="cardGame--item">{game.plateforme}</li>
               <li className="cardGame--item">{game.obtention}</li>
-              <li className="cardGame--item">
-                <i className="fa-solid fa-trash-can"></i>
+              <li className="cardGame--item--2">
+                <ModalBtn
+                  text={<i className="fa-solid fa-trash-can"></i>}
+                  content={<DeleteGame />}
+                />
               </li>
-              <li className="cardGame--item">
-                <i className="fa-solid fa-pen-fancy"></i>
+              <li className="cardGame--item--2">
+                <ModalBtn
+                  text={<i className="fa-solid fa-pen-fancy"></i>}
+                  content={"ceci est un test"}
+                />
               </li>
             </ul>
           ))}
