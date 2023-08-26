@@ -51,7 +51,7 @@ function UserPage() {
         <div className="listContainer">
           <h3 className="listContainer__title">
             <i className="fa-solid fa-clipboard-list"></i>
-            Vos Jeux :{" "}
+            Vos Jeux :
           </h3>
           {gameData.map((game) => (
             <ul className="cardGame" key={game._id}>
@@ -61,14 +61,11 @@ function UserPage() {
               <li className="cardGame--item--2">
                 <ModalBtn
                   text={<i className="fa-solid fa-trash-can"></i>}
-                  content={<DeleteGame />}
+                  content={<DeleteGame game={game} refreshData={refreshData} />}
                 />
               </li>
               <li className="cardGame--item--2">
-                <ModalBtn
-                  text={<i className="fa-solid fa-pen-fancy"></i>}
-                  content={"ceci est un test"}
-                />
+                <i className="fa-solid fa-pen-fancy"></i>
               </li>
             </ul>
           ))}
