@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../Authentification/AuthContext";
+import { MyAPI } from "../Api/myApi";
 import AddGame from "../Component/Forms/AddGame";
-import DeleteGame from "../Component/DeleteGame";
-import ModalBtn from "../Component/ModalBtn";
+import CardGame from "../Component/CardGame";
 
 function UserPage() {
   const [gameData, setGameData] = useState();
@@ -12,15 +12,7 @@ function UserPage() {
   //fonction d'appel à mon api
   async function fetchData() {
     try {
-      const response = await fetch("http://localhost:3000/api/game", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (!response) {
-        console.log("Requête échouée avec le status : " + response.status);
-        return;
-      }
-
-      const dataGame = await response.json();
+      const dataGame = await MyAPI.getGames(token);
       setGameData(dataGame);
       setLoading(false);
     } catch (error) {
@@ -36,7 +28,9 @@ function UserPage() {
   }
 
   useEffect(() => {
-    fetchData();
+    if (token) {
+      fetchData();
+    }
   }, []);
 
   console.log(gameData);
@@ -54,20 +48,11 @@ function UserPage() {
             Vos Jeux :
           </h3>
           {gameData.map((game) => (
-            <ul className="cardGame" key={game._id}>
-              <li className="cardGame--item--1">{game.game}</li>
-              <li className="cardGame--item">{game.plateforme}</li>
-              <li className="cardGame--item">{game.obtention}</li>
-              <li className="cardGame--item--2">
-                <ModalBtn
-                  text={<i className="fa-solid fa-trash-can"></i>}
-                  content={<DeleteGame game={game} refreshData={refreshData} />}
-                />
-              </li>
-              <li className="cardGame--item--2">
-                <i className="fa-solid fa-pen-fancy"></i>
-              </li>
-            </ul>
+            <CardGame
+              key={game._id}
+              dataGame={game}
+              refreshData={refreshData}
+            />
           ))}
         </div>
       </main>

@@ -23,7 +23,6 @@ function DeleteGame({ game, refreshData }) {
     }
     refreshData();
   }
-  console.log(game);
   return (
     <div className="delete__Container">
       <h3 className="delete__title">

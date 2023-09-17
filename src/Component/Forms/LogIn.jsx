@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Authentification/AuthContext";
+import { MyAPI } from "../../Api/myApi";
 
 /*
 Pour plus tard : quand j'aurais la bdd rajouter le fetch pour récupéré la liste des identifiants
@@ -12,29 +13,20 @@ function LogIn() {
   const { updateToken } = useAuth(); //me permet d'appeler la fonction updateToken du hook
   let user = {};
 
-  //fonction pour géré la logique du formulaire
-  async function form(event) {
-    event.preventDefault(); //Pour empêcher le rechargement de la page
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  useEffect(() => {
+    if (logIn) {
+      console.log(logIn);
+      fetchLogIn();
+    }
+  }, [logIn]);
 
-    user = {
-      email: email,
-      password: password,
-    };
-    setLogIn(user);
-
+  //function d'appel à l'api
+  async function fetchLogIn() {
     try {
-      const log = await fetch("http://localhost:3000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(logIn),
-      });
-      const data = await log.json();
-      console.log(data);
-      if (data) {
-        const token = data.token;
-        const userId = data.userId;
+      const log = await MyAPI.postLogIn(logIn);
+      if (log) {
+        const token = log.token;
+        const userId = log.userId;
         updateToken(token, userId); //permet de récupéré et d'enregistré le token renvoyé par l'api
         console.log("connextion réussie !");
       } else {
@@ -44,9 +36,24 @@ function LogIn() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  //fonction pour géré la logique du formulaire
+  function form(event) {
+    event.preventDefault(); //Pour empêcher le rechargement de la page
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    user = {
+      email: email,
+      password: password,
+    };
+
+    setLogIn(user);
 
     navigate("/userPage");
   }
+
   return (
     <form className="formContainer" onSubmit={form}>
       <label htmlFor="email">Votre identifiant : </label>
@@ -57,5 +64,4 @@ function LogIn() {
     </form>
   );
 }
-
 export default LogIn;
