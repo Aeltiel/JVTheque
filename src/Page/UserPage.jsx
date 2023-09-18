@@ -71,7 +71,11 @@ function UserPage() {
       </main>
     );
   } else {
-    //mettre un composant de redirection
+    <NotFound
+      text={
+        "Tu ne sembles pas connecté. Connectes-toi ou crées-toi un compte à partir de la page d'accueil"
+      }
+    />;
   }
 }
 export default UserPage;

@@ -25,5 +25,4 @@ Les fichiers react sont triés de la manière suivante :
 
 note :
 -rajouter l'authentification pour le link dans la navbar afin de proposé une alternative quand on est pas connecté :
--refaire le bouton de co dans la navbar sous forme de burger ou autre
--mettre l'affichage en card des jeux dans un composant à part afin de pouvoir faire plus simplement la logique de modification. le but est de faire un rendu conditionnel, permettant l'affichage ou l'édition du jeu pour enregistrer les modif via un fetch
+-dans la navbar, faire un sous menu sur le bouton user une fois que l'ont est sur la userpage
