@@ -1,0 +1,9 @@
+.notFound{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    &__text{
+        width: 65%;
+        text-align: center;
+    }
+}

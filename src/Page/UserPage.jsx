@@ -3,9 +3,10 @@ import { useAuth } from "../Authentification/AuthContext";
 import { MyAPI } from "../Api/myApi";
 import AddGame from "../Component/Forms/AddGame";
 import CardGame from "../Component/CardGame";
+import NotFound from "../Component/NotFound";
 
 function UserPage() {
-  const [gameData, setGameData] = useState();
+  const [gameData, setGameData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { token } = useAuth();
 
@@ -47,13 +48,25 @@ function UserPage() {
             <i className="fa-solid fa-clipboard-list"></i>
             Vos Jeux :
           </h3>
-          {gameData.map((game) => (
-            <CardGame
-              key={game._id}
-              dataGame={game}
-              refreshData={refreshData}
+          {!Array.isArray(gameData) ||
+          (Array.isArray(gameData) && gameData.length === 0) ? (
+            <NotFound
+              text={
+                "Désolé, il semblerait que tu n'ai pas de jeu enregistré pour le moment. Rajoutes-en un !"
+              }
             />
-          ))}
+          ) : (
+            <>
+              {Array.isArray(gameData) &&
+                gameData.map((game) => (
+                  <CardGame
+                    key={game._id}
+                    dataGame={game}
+                    refreshData={refreshData}
+                  />
+                ))}
+            </>
+          )}
         </div>
       </main>
     );

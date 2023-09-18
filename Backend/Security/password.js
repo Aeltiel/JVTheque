@@ -47,5 +47,4 @@ passwordSchema
     "~",
   ]);
 
-//console.log(passwordSchema.validate("T3st4ListJV!"));
 module.exports = passwordSchema;

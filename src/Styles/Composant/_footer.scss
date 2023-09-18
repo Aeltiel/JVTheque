@@ -3,6 +3,8 @@ footer{
     height: 90px;
     background-color: darken($secondarycolor, 20%);
     color: white;
+    position: fixed;
+    bottom: 60px;
 }
 
 .footer__list{
@@ -11,6 +13,6 @@ footer{
     font-size: 16px;
     text-align: center;
     &--item{
-        padding-top: 15px;
+        padding-top: 10px;
     }
 }
