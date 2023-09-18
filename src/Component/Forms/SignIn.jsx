@@ -1,86 +1,114 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MyAPI } from "../../Api/myApi";
+import { useAuth } from "../../Authentification/AuthContext";
 
 function SignIn() {
-    const [signIn, setSignIn] = useState();
-    const [pseudo, setPseudo] = useState(false);
-    const [mail, setMail] = useState(false);
-    const [mdp, setMdp] = useState(false);
-    const navigate = useNavigate()//hook qui gère la redirection de page
+  const [signIn, setSignIn] = useState({ pseudo: "", email: "", password: "" });
+  const [submit, setSubmit] = useState(false);
+  const navigate = useNavigate(); //hook qui gère la redirection de page
+  const { updateToken } = useAuth();
 
-    let newUser = {}
+  //bloc pour valider les données reçue du formulaire avant envoi
+  let regMail = new RegExp(
+    "[a-z0-9\\-_]+[a-z0-9\\.\\-_]*@[a-z0-9\\-_]{2,}\\.[a-z\\.\\-_]+[a-z\\-_]+"
+  );
+  let regMdp =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\(\)-_\+=\[\]\{\}\|;:'",<.>/?`~])[^ ]{8,20}$/;
+  let regPseudo = /^[a-zA-Z0-9_-]{1,20}$/;
 
-    let regMail = new RegExp("[a-z0-9\\-_]+[a-z0-9\\.\\-_]*@[a-z0-9\\-_]{2,}\\.[a-z\\.\\-_]+[a-z\\-_]+");
-    let regMdp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^<>]{8,}$/;
-    let regPseudo = /^[a-zA-Z0-9_-]{1,20}$/;
-
-
-    //fonction pour géré la logique du formulaire
-    function form(event) {
-        event.preventDefault(); //Pour empêcher le rechargement de la page
-
-        //variable pour récupéré les données des inputs du formulaire
-        //Important : bien faire coincider les noms des variables et des éléments form au model
-        //du backend, sinon ça provoque une erreur 400
-        let pseudoForm = event.target.pseudoForm.value;
-        let email = event.target.email.value;
-        let password = event.target.password.value;
-
-        //vérification des données
-        if (regMail.test(email) === false || email === "") {
-            setMail(false)
-            alert('Votre adresse mail est incorrect');
-            event.preventDefault();
-        }
-        if (regMdp.test(password) === false || password === "") {
-            setMdp(false);
-            alert('Votre mot de passe doit comporter : 8 caractères dont au moins une minuscule, une majuscule et un chiffre')
-            event.preventDefault();
-        }
-        if (regPseudo.test(pseudoForm) === false || pseudoForm === "") {
-            setPseudo(false);
-            alert('Votre Pseudo ne doit pas faire plus de 20 caractères')
-            event.preventDefault();
-        }
-        else {
-            setMail(true)
-            setMdp(true)
-            setPseudo(true)
-            newUser = {
-                pseudo: pseudoForm,
-                email: email,
-                password: password
-            }
-            setSignIn(newUser)
-        }
-        if (pseudo === true && mail === true && mdp === true) {
-            fetch("http://localhost:3000/api/auth/signup",
-                {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(signIn)
-                })
-                .then(response => response.json())
-                .then(data => { console.log('Félications, vous êtes bien enregistré') })
-                .catch(error => { console.log(error) });
-
-            navigate("/userPage")
-        }
-
-
+  function mailTest(email) {
+    if (regMail.test(email) === false || email === "") {
+      alert("Votre adresse mail est incorrect");
     }
-    return (
-        <form className="formContainer" onSubmit={form} noValidate>
-            <label htmlFor="pseudoForm">Votre pseudo : </label>
-            <input type="text" name="pseudoForm" id="pseudoForm" required />
-            <label htmlFor="email">Votre mail : </label>
-            <input type="email" name="email" id="email" required />
-            <label htmlFor="password">Créer votre mot de passe : </label>
-            <input type="password" name="password" id="password" required />
-            <button>Envoyer</button>
-        </form>
+  }
 
-    )
+  function pseudoTest(pseudo) {
+    if (regPseudo.test(pseudo) === false || pseudo === "") {
+      alert("Votre Pseudo ne doit pas faire plus de 20 caractères");
+    }
+  }
+
+  function passwordTest(password) {
+    if (regMdp.test(password) === false || password === "") {
+      alert(
+        "Votre mot de passe doit comporter : 8 caractères dont au moins une minuscule, une majuscule et un chiffre"
+      );
+    }
+  }
+
+  // fonction d'appel à l'api pour l'enregistrement des données
+  async function fetchSignUp() {
+    try {
+      const sign = await MyAPI.postSignIn(signIn);
+      if (sign) {
+        console.log("félicitation vous êtes enregistré !");
+        const token = sign.token;
+        const userId = sign.userId;
+        updateToken(token, userId);
+        navigate("/userPage");
+      } else {
+        alert("fetchSignUp : " + sign.message);
+      }
+    } catch (error) {
+      console.log("SignUp Error : " + error);
+    }
+  }
+
+  //fonction pour géré la logique du formulaire
+  function form(event) {
+    event.preventDefault(); //Pour empêcher le rechargement de la page
+    console.log("Formulaire envoyé !");
+    const { pseudo, email, password } = signIn;
+    //vérification des données
+    const pseudoValidate = pseudoTest(pseudo);
+    const emailValidate = mailTest(email);
+    const passwordValidate = passwordTest(password);
+
+    if (pseudoValidate && emailValidate && passwordValidate) {
+      setSignIn({ pseudo, email, password });
+    }
+    setSubmit(true);
+    console.log(signIn);
+  }
+  useEffect(() => {
+    if (submit && signIn) {
+      fetchSignUp();
+    }
+  }, [signIn, submit]);
+
+  return (
+    <form className="formContainer" onSubmit={form}>
+      <label htmlFor="pseudoForm">Votre pseudo : </label>
+      <input
+        type="text"
+        name="pseudo"
+        id="pseudo"
+        value={signIn.pseudo}
+        onChange={(e) => setSignIn({ ...signIn, pseudo: e.target.value })}
+        required
+      />
+      <label htmlFor="email">Votre mail : </label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value={signIn.email}
+        onChange={(e) => setSignIn({ ...signIn, email: e.target.value })}
+        required
+      />
+      <label htmlFor="password">Votre mot de passe : </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        value={signIn.password}
+        onChange={(e) => setSignIn({ ...signIn, password: e.target.value })}
+        required
+      />
+      <button>Envoyer</button>
+    </form>
+  );
 }
 
-export default SignIn
+export default SignIn;

@@ -10,24 +10,58 @@ exports.signup = (req, res, next) => {
   let statut = validator.validate(req.body.email);
   let password = passwordValidator.validate(req.body.password);
   if (statut === true && password === true) {
-    bcrypt
-      .hash(req.body.password, 10)
-      .then((hash) => {
-        const user = new User({
-          pseudo: req.body.pseudo,
-          email: req.body.email,
-          password: hash,
-        });
-        user
-          .save()
-          .then(() =>
-            res.status(201).json({ message: "Utilisateur enregistré !" })
-          )
-          .catch((error) => res.status(400).json({ error }));
+    // Vérification d'unicité
+    User.findOne({
+      $or: [{ pseudo: req.body.pseudo }, { email: req.body.email }],
+    })
+      .then((existingUser) => {
+        if (existingUser) {
+          // Un utilisateur avec le même pseudo ou e-mail existe déjà
+          return res
+            .status(400)
+            .json({ message: "Ce pseudo ou cet e-mail est déjà utilisé." });
+        } else {
+          // Aucun conflit d'unicité, vous pouvez insérer le nouvel utilisateur ici
+          bcrypt
+            .hash(req.body.password, 10)
+            .then((hash) => {
+              const user = new User({
+                pseudo: req.body.pseudo,
+                email: req.body.email,
+                password: hash,
+              });
+              user
+                .save()
+                .then(() => {
+                  const newToken = jwt.sign({ userId: user._id }, token, {
+                    expiresIn: "24h",
+                  });
+                  res
+                    .status(201)
+                    .json({
+                      message: "Utilisateur enregistré !",
+                      token: newToken,
+                      userId: user._id,
+                    });
+                })
+                .catch((error) => {
+                  res.status(400).json({ error });
+                });
+            })
+            .catch((error) => {
+              res.status(500).json({ error });
+            });
+        }
       })
-      .catch((error) => res.status(500).json({ error }));
+      .catch((error) => {
+        // Gérez les erreurs de manière appropriée
+        console.error(error);
+        res
+          .status(500)
+          .json({ error: "Une erreur s'est produite lors de l'inscription." });
+      });
   } else {
-    res.status(500).json({ message: "Adresse mail invalide" });
+    res.status(400).json({ message: "Adresse mail ou mot de passe invalide" });
   }
 };
 
