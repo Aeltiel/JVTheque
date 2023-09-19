@@ -70,12 +70,6 @@ function UserPage() {
         </div>
       </main>
     );
-  } else {
-    <NotFound
-      text={
-        "Tu ne sembles pas connecté. Connectes-toi ou crées-toi un compte à partir de la page d'accueil"
-      }
-    />;
   }
 }
 export default UserPage;

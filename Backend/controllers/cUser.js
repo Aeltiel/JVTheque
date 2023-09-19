@@ -36,13 +36,11 @@ exports.signup = (req, res, next) => {
                   const newToken = jwt.sign({ userId: user._id }, token, {
                     expiresIn: "24h",
                   });
-                  res
-                    .status(201)
-                    .json({
-                      message: "Utilisateur enregistré !",
-                      token: newToken,
-                      userId: user._id,
-                    });
+                  res.status(201).json({
+                    message: "Utilisateur enregistré !",
+                    token: newToken,
+                    userId: user._id,
+                  });
                 })
                 .catch((error) => {
                   res.status(400).json({ error });
@@ -69,7 +67,6 @@ exports.login = (req, res, next) => {
   if (req.body.email === "" && req.body.password === "") {
     res.status(401).json({ message: "Identifiant ou mot de passe incorrect" });
   } else {
-    console.log(req.body.email);
     User.findOne({ email: req.body.email })
       .then((user) => {
         if (!user) {

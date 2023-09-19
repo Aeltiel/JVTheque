@@ -1,23 +1,16 @@
 import { useAuth } from "../Authentification/AuthContext";
+import { MyAPI } from "../Api/myApi";
 
 function DeleteGame({ game, refreshData }) {
   const { token } = useAuth();
 
   async function deleteGame() {
     try {
-      const gameToDelete = await fetch(
-        `http://localhost:3000/api/game/${game._id}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      if (!gameToDelete.ok) {
-        console.log("Erreur lors de la suppression : " + gameToDelete.status);
-        return;
+      const gameToDelete = await MyAPI.deleteGame(token, game);
+      if (gameToDelete) {
+        console.log("Jeu supprimé");
+        alert("Le jeu a bien été supprimé");
       }
-      console.log("Jeu supprimé");
-      alert("Le jeu a bien été supprimé");
     } catch (error) {
       console.log(error);
     }

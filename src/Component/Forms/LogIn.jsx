@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Authentification/AuthContext";
 import { MyAPI } from "../../Api/myApi";
 
-/*
-Pour plus tard : quand j'aurais la bdd rajouter le fetch pour récupéré la liste des identifiants
-afin de trouver le log entrer et le comparer pour voir s'il est correct puis envoyer l'accès à la page user
- */
 function LogIn() {
   const [logIn, setLogIn] = useState();
   const navigate = useNavigate();
@@ -17,6 +13,7 @@ function LogIn() {
     if (logIn) {
       console.log(logIn);
       fetchLogIn();
+      navigate("/userPage");
     }
   }, [logIn]);
 
@@ -24,7 +21,7 @@ function LogIn() {
   async function fetchLogIn() {
     try {
       const log = await MyAPI.postLogIn(logIn);
-      if (log) {
+      if (log && log.token && log.userId) {
         const token = log.token;
         const userId = log.userId;
         updateToken(token, userId); //permet de récupéré et d'enregistré le token renvoyé par l'api
@@ -48,10 +45,8 @@ function LogIn() {
       email: email,
       password: password,
     };
-
+    console.log(user);
     setLogIn(user);
-
-    navigate("/userPage");
   }
 
   return (

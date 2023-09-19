@@ -38,4 +38,38 @@ export class MyAPI {
     const dataGame = await response.json();
     return dataGame;
   }
+
+  static async postGames(token, newGame) {
+    const sendGame = await fetch("http://localhost:3000/api/game", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(newGame),
+    });
+
+    if (!sendGame) {
+      console.log("Erreur lors de l'ajout du jeu " + sendGame.status);
+      return;
+    }
+    const response = await sendGame.json();
+    return response;
+  }
+
+  static async deleteGame(token, game) {
+    const deleteTheGame = await fetch(
+      `http://localhost:3000/api/game/${game._id}`,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    if (!deleteTheGame) {
+      console.log("Erreur lors de la suppression : " + deleteTheGame.status);
+      return;
+    }
+    const response = await deleteTheGame.json();
+    return response;
+  }
 }

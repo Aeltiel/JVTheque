@@ -17,10 +17,9 @@ exports.createGame = (req, res, next) => {
 
 exports.getAllGame = (req, res, next) => {
   const authUser = req.auth.userId;
-  Game.find()
+  Game.find({ userId: authUser })
     .then((games) => {
-      const userGames = games.filter((game) => game.userId === authUser);
-      if (userGames.length === 0) {
+      if (games.length === 0) {
         res.status(404).json({ message: "Requête des jeux non authorisé !" });
       } else {
         res.status(200).send(games);

@@ -1,4 +1,5 @@
 import { useAuth } from "../../Authentification/AuthContext";
+import { MyAPI } from "../../Api/myApi";
 
 function AddGame({ refreshData }) {
   const { token } = useAuth();
@@ -10,20 +11,13 @@ function AddGame({ refreshData }) {
   //fonction de fetch (test d'externaliser le fetch pour régler le problème de double clic sur le bonton "envoyer")
   async function gameFetch(newGame) {
     try {
-      const fetchGame = await fetch("http://localhost:3000/api/game", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(newGame),
-      });
-
-      if (!fetchGame.ok) {
-        console.log("Erreur lors de l'ajout du jeu " + fetchGame.status);
-        return;
+      const addGame = await MyAPI.postGames(token, newGame);
+      if (addGame) {
+        console.log("Félications, votre jeu est bien enregistré");
+      } else {
+        console.log("Une erreur d'enregistrement de ton jeu est survenu !");
+        alert("Une erreur d'enregistrement de ton jeu est survenu !");
       }
-      console.log("Félications, votre jeu est bien enregistré");
     } catch (error) {
       console.log(error);
     }
