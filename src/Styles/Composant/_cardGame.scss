@@ -31,4 +31,50 @@
             padding-right: 5px;
         }
     }
+    &--input{
+        padding-left: 5px;
+        margin-left: 5px;
+        width: 20%;
+        height: 30px;
+        background-color: darken($primarycolor, 10%);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        &::placeholder{
+            color : darken(white, 15%)
+        }
+    }
+    &--plateforme{
+        width: 20%;
+        height: 35px;
+        border-radius: 5px;
+        background-color: darken($primarycolor, 10%);
+        color: white;
+    }
+    &--obtention{
+        width: 20%;
+        height: 35px;
+        border-radius: 5px;
+        background-color: darken($primarycolor, 10%);
+        color: white;
+    }
+    &--btn{
+        width: 24px;
+        background-color: transparent;
+        border: none;
+    }
+    &--btn-1{
+        width: 24px;
+        background-color: transparent;
+        border: none;
+        margin-right: 7px;
+    }
+}
+.fa-circle-check{
+    color : $greencolor;
+    font-size:22px ;
+}
+.fa-circle-xmark{
+    color : $redcolor;
+    font-size : 22px ;
 }

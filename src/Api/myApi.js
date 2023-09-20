@@ -57,6 +57,25 @@ export class MyAPI {
     return response;
   }
 
+  static async putGames(token, game) {
+    const sendModifyGame = await fetch(
+      `http://localhost:3000/api/game/${game._id}`,
+      {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify(game),
+      }
+    );
+    if (!sendModifyGame) {
+      console.log(
+        "Erreur lors de la modification du jeu : " + sendModifyGame.status
+      );
+      return;
+    }
+    const response = await sendModifyGame.json();
+    return response;
+  }
+
   static async deleteGame(token, game) {
     const deleteTheGame = await fetch(
       `http://localhost:3000/api/game/${game._id}`,

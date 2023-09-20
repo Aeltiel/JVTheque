@@ -11,24 +11,41 @@ const AuthContext = createContext(); //création du contexte d'authentification
 
 //le provider qui va englober mon application et permettre l'usage du hook personnaliser partout où il faut
 export function AuthProvider({ children }) {
-    const [token, setToken] = useState(localStorage.getItem('token') || '');
-    const [userID, setUserID] = useState(localStorage.getItem('userId') || '')
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [userID, setUserID] = useState(localStorage.getItem("userId") || "");
+  const [pseudo, setPseudo] = useState("");
 
-    //fonction pour enregistré le token dans le local storage
-    function updateToken(newToken, newId){
-        setToken(newToken);
-        setUserID(newId)
-        localStorage.setItem('token', newToken);
-        localStorage.setItem('userId', newId);
-    }
-    return (
-        <AuthContext.Provider value={{ token, setToken, userID, setUserID, updateToken }}>
-            {children}
-        </AuthContext.Provider>
-    )
+  //fonction pour enregistré le token dans le local storage
+  function updateToken(newToken, newId) {
+    setToken(newToken);
+    setUserID(newId);
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("userId", newId);
+  }
+
+  //enregistrement du pseudo
+  function savePseudo(pseudo) {
+    setPseudo(pseudo);
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        token,
+        setToken,
+        userID,
+        setUserID,
+        updateToken,
+        savePseudo,
+        pseudo,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 //création d'un hook personnaliser pour utiliser mon context partout où j'en ai besoin
 export function useAuth() {
-    return useContext(AuthContext);
+  return useContext(AuthContext);
 }

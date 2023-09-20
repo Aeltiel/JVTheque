@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../Authentification/AuthContext";
 import { MyAPI } from "../Api/myApi";
-import AddGame from "../Component/Forms/AddGame";
-import CardGame from "../Component/CardGame";
+import AddGame from "../Container/Forms/AddGame";
+import CardGame from "../Container/CardGame";
 import NotFound from "../Component/NotFound";
 
 function UserPage() {
   const [gameData, setGameData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { token } = useAuth();
+  const { pseudo } = useAuth();
 
   //fonction d'appel à mon api
   async function fetchData() {
@@ -42,6 +43,9 @@ function UserPage() {
   if (token) {
     return (
       <main>
+        <h2 className="userPage__title">
+          Bienvenue {pseudo} ! Quel nouveau jeu as-tu dans ta collection ?
+        </h2>
         <AddGame refreshData={refreshData} />
         <div className="listContainer">
           <h3 className="listContainer__title">

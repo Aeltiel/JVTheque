@@ -71,7 +71,7 @@ function AddGame({ refreshData }) {
           <option value="Oui">Oui</option>
           <option value="Non">Non</option>
         </select>
-        <button>Ajouter</button>
+        <button type="submit">Ajouter</button>
       </form>
     );
   } else {
