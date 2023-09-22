@@ -57,13 +57,16 @@ export class MyAPI {
     return response;
   }
 
-  static async putGames(token, game) {
+  static async putGames(token, game, modifiedGame) {
     const sendModifyGame = await fetch(
       `http://localhost:3000/api/game/${game._id}`,
       {
         method: "PUT",
-        headers: { Authorization: `Bearer ${token}` },
-        body: JSON.stringify(game),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(modifiedGame),
       }
     );
     if (!sendModifyGame) {

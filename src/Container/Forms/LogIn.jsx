@@ -7,12 +7,10 @@ function LogIn() {
   const [logIn, setLogIn] = useState();
   const navigate = useNavigate();
   const { updateToken } = useAuth(); //me permet d'appeler la fonction updateToken du hook
-  const { savePseudo } = useAuth();
   let user = {};
 
   useEffect(() => {
     if (logIn) {
-      console.log(logIn);
       fetchLogIn();
       navigate("/userPage");
     }
@@ -25,8 +23,8 @@ function LogIn() {
       if (log && log.token && log.userId) {
         const token = log.token;
         const userId = log.userId;
-        updateToken(token, userId); //permet de récupéré et d'enregistré le token renvoyé par l'api
-        savePseudo(log.pseudo);
+        const pseudo = log.pseudo;
+        updateToken(token, userId, pseudo); //permet de récupéré et d'enregistré le token renvoyé par l'api
         console.log("connextion réussie !");
       } else {
         console.log("Echec de la connexion !");
@@ -47,7 +45,6 @@ function LogIn() {
       email: email,
       password: password,
     };
-    console.log(user);
     setLogIn(user);
   }
 

@@ -5,7 +5,9 @@ import { MyAPI } from "../Api/myApi";
 import { useAuth } from "../Authentification/AuthContext";
 
 function CardGame({ refreshData, dataGame }) {
-  const [form, setForm] = useState(false);
+  const [game, setGame] = useState(dataGame.game);
+  const [plateforme, setPlateforme] = useState(dataGame.plateforme);
+  const [obtention, setObtention] = useState(dataGame.obtention);
   const [visible, setVisible] = useState(false);
   const { token } = useAuth();
 
@@ -15,27 +17,47 @@ function CardGame({ refreshData, dataGame }) {
 
   async function fetchPutGame(game) {
     try {
-      const putGame = await MyAPI.putGames(token, game);
-      if (putGame) {
-        console.log("Félications, votre jeu a été modifié avec succès");
-      } else {
+      const putGame = await MyAPI.putGames(token, dataGame, game);
+      if (putGame.error) {
         console.log("Une erreur d'enregistrement de ton jeu est survenu !");
         alert("Une erreur d'enregistrement de ton jeu est survenu !");
+      } else {
+        console.log("Félications, votre jeu a été modifié avec succès");
+        console.log(putGame);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  function modifyGame(e) {
+  async function modifyGame(e) {
     e.preventDefault();
-    /*
-    quand je clique, affichage d'un form avec le même design que la carte.
-    contient les info pré-rempli  avec les champs disponible à la modifications
-    + bouton valider et annuler.
-    bouton valider, fait un fetch vers le modify route.
-    bouton annuler pour revenir à la card de base
-    */
+    let regGame = /^[A-Za-z0-9\sÀ-ÿ:]{1,100}$/;
+    const modifiedGame = {};
+    if (game !== dataGame.game) {
+      if (regGame.test(game)) {
+        modifiedGame.game = game;
+      } else if (game === "") {
+        alert("Si tu souhaites supprimer ton jeu, cliques sur la corbeille");
+        setVisible(false);
+        return;
+      } else {
+        alert("Le nom du jeu n'est pas valide");
+        return;
+      }
+    }
+
+    if (plateforme !== dataGame.plateforme) {
+      modifiedGame.plateforme = plateforme;
+    }
+
+    if (obtention !== dataGame.obtention) {
+      modifiedGame.obtention = obtention;
+    }
+    console.log(modifiedGame);
+    await fetchPutGame(modifiedGame);
+    setVisible(false);
+    refreshData();
   }
 
   return (
@@ -45,12 +67,13 @@ function CardGame({ refreshData, dataGame }) {
           <input
             className="cardGame--input"
             type="text"
-            placeholder={dataGame.game}
+            value={game}
+            onChange={(e) => setGame(e.target.value)}
           />
           <select
             className="cardGame--plateforme"
-            id="plateforme"
-            name="plateforme"
+            value={plateforme}
+            onChange={(e) => setPlateforme(e.target.value)}
           >
             <option value="">{dataGame.plateforme}</option>
             <option value="Switch">Switch</option>
@@ -59,8 +82,8 @@ function CardGame({ refreshData, dataGame }) {
           </select>
           <select
             className="cardGame--obtention"
-            id="obtention"
-            name="obtention"
+            value={obtention}
+            onChange={(e) => setObtention(e.target.value)}
           >
             <option value="">{dataGame.obtention}</option>
             <option value="Oui">Oui</option>

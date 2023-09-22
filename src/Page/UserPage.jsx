@@ -35,8 +35,6 @@ function UserPage() {
     }
   }, []);
 
-  console.log(gameData);
-
   if (loading) {
     return <div>Chargement en cours</div>;
   }

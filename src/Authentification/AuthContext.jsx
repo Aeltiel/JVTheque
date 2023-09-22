@@ -13,19 +13,16 @@ const AuthContext = createContext(); //création du contexte d'authentification
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [userID, setUserID] = useState(localStorage.getItem("userId") || "");
-  const [pseudo, setPseudo] = useState("");
+  const [pseudo, setPseudo] = useState(localStorage.getItem("pseudo") || "");
 
   //fonction pour enregistré le token dans le local storage
-  function updateToken(newToken, newId) {
+  function updateToken(newToken, newId, newPseudo) {
     setToken(newToken);
     setUserID(newId);
+    setPseudo(newPseudo);
     localStorage.setItem("token", newToken);
     localStorage.setItem("userId", newId);
-  }
-
-  //enregistrement du pseudo
-  function savePseudo(pseudo) {
-    setPseudo(pseudo);
+    localStorage.setItem("pseudo", newPseudo);
   }
 
   return (
@@ -36,7 +33,6 @@ export function AuthProvider({ children }) {
         userID,
         setUserID,
         updateToken,
-        savePseudo,
         pseudo,
       }}
     >
