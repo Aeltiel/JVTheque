@@ -2,7 +2,7 @@
     width: 100%;
     height: 60px;
     background-color: black;
-    position: fixed;
+    position:fixed;
     bottom: 0;
     display: flex;
     justify-content: space-evenly;
@@ -10,6 +10,43 @@
     z-index : 10;
     & .navLink{
         font-size: 28px;
-        color: $secondarycolor;
+        color: $primarycolor;
+    }
+    & .navLinkBtn{
+        background-color: transparent;
+        color: $primarycolor;
+        border: none;
+        & .fa-circle-user{
+            font-size: 28px;
+        }
+    }
+}
+
+.userNav{
+    position: absolute;
+    bottom: 46px;
+    right : 0;
+    padding: 0;
+    width: 50%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    background-color: darken($primarycolor, 15%);
+    & .userLi{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-size: 26px;
+        width: 100%;
+        height: 60px;
+        border-bottom: 2px solid white;
+        padding-left: 2%;
+        padding-right: 2%;
+        &--btn{
+            background-color: transparent;
+            color: white;
+            font-size: 26px;
+            border: none;
+        }
     }
 }
