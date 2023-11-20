@@ -8,9 +8,9 @@
     }
     &__box{
         width: 100%;
-        height: 35%;
+        height: 42%;
         position: fixed;
-        bottom: 42%;
+        bottom: 30%;
         
     }
     &__closebtn{
@@ -21,8 +21,8 @@
         background-color: transparent;
     }
     &__content{
-        height: 100%;
-        padding-top: 20px;
+        padding-top: 25px;
+        padding-bottom: 20px;
         color: white;
         @include gradientBlue;
     }

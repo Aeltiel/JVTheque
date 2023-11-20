@@ -5,6 +5,7 @@ import { MyAPI } from "../../Api/myApi";
 
 function LogIn() {
   const [logIn, setLogIn] = useState();
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { updateToken } = useAuth(); //me permet d'appeler la fonction updateToken du hook
   let user = {};
@@ -12,7 +13,6 @@ function LogIn() {
   useEffect(() => {
     if (logIn) {
       fetchLogIn();
-      navigate("/userPage");
     }
   }, [logIn]);
 
@@ -26,9 +26,10 @@ function LogIn() {
         const pseudo = log.pseudo;
         updateToken(token, userId, pseudo); //permet de récupéré et d'enregistré le token renvoyé par l'api
         console.log("connextion réussie !");
+        navigate("/userPage");
       } else {
         console.log("Echec de la connexion !");
-        alert("Votre email ou votre mot de passe est incorrect");
+        setError("Votre email ou votre mot de passe est incorrect");
       }
     } catch (error) {
       console.log(error);
@@ -46,6 +47,7 @@ function LogIn() {
       password: password,
     };
     setLogIn(user);
+    event.target.reset();
   }
 
   return (
@@ -54,6 +56,11 @@ function LogIn() {
       <input type="email" name="email" id="email" />
       <label htmlFor="password">Entrer votre mot de passe : </label>
       <input type="password" name="password" id="password" />
+      {error && (
+        <p className="formError">
+          Votre identifiant ou votre mot de passe est incorrect
+        </p>
+      )}
       <button>Envoyer</button>
     </form>
   );

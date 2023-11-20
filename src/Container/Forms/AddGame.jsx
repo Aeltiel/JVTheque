@@ -1,18 +1,22 @@
 import { useAuth } from "../../Authentification/AuthContext";
 import { MyAPI } from "../../Api/myApi";
+import { useState } from "react";
 
 function AddGame({ refreshData }) {
+  const [nameError, setNameError] = useState("");
+  const [addGameError, setAddGameError] = useState("");
   const { token } = useAuth();
   const { userID } = useAuth();
 
   let newGame = {};
   let regGame = /^[A-Za-z0-9\sÀ-ÿ:]{1,100}$/;
 
-  //fonction de fetch (test d'externaliser le fetch pour régler le problème de double clic sur le bonton "envoyer")
+  //fonction de fetch
   async function gameFetch(newGame) {
     try {
       const addGame = await MyAPI.postGames(token, newGame);
-      if (addGame) {
+      console.log(addGame);
+      if (!addGame.error) {
         console.log("Félications, votre jeu est bien enregistré");
       } else {
         console.log("Une erreur d'enregistrement de ton jeu est survenu !");
@@ -34,7 +38,7 @@ function AddGame({ refreshData }) {
 
     //vérifier les données du formulaire
     if (regGame.test(jeu) === false || jeu === "") {
-      alert("Le nom du jeu est incorrect");
+      setNameError("Le nom du jeu est incorrect");
       event.preventDefault();
     } else {
       // création d'un nouvel objet avec les données de mon formulaire récupéré plus haut
@@ -58,6 +62,7 @@ function AddGame({ refreshData }) {
       <form onSubmit={AddNewGame} className="formContainer">
         <label htmlFor="jeu">Jeu : </label>
         <input type="text" id="game" name="game" />
+        {nameError && <p className="formError">{nameError}</p>}
         <label htmlFor="plateforme">Plateforme : </label>
         <select id="plateforme" name="plateforme">
           <option value="">Choisi la plateforme de ton jeu</option>

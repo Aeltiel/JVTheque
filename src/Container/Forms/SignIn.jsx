@@ -6,6 +6,9 @@ import { useAuth } from "../../Authentification/AuthContext";
 function SignIn() {
   const [signIn, setSignIn] = useState({ pseudo: "", email: "", password: "" });
   const [submit, setSubmit] = useState(false);
+  const [errorPseudo, setErrorPseudo] = useState("");
+  const [errorMail, setErrorMail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
   const navigate = useNavigate(); //hook qui gère la redirection de page
   const { updateToken } = useAuth();
 
@@ -19,19 +22,19 @@ function SignIn() {
 
   function mailTest(email) {
     if (regMail.test(email) === false || email === "") {
-      alert("Votre adresse mail est incorrect");
+      setErrorMail("Votre adresse mail est incorrect");
     }
   }
 
   function pseudoTest(pseudo) {
     if (regPseudo.test(pseudo) === false || pseudo === "") {
-      alert("Votre Pseudo ne doit pas faire plus de 20 caractères");
+      setErrorPseudo("Votre Pseudo ne doit pas faire plus de 20 caractères");
     }
   }
 
   function passwordTest(password) {
     if (regMdp.test(password) === false || password === "") {
-      alert(
+      setErrorPassword(
         "Votre mot de passe doit comporter : 8 caractères dont au moins une minuscule, une majuscule et un chiffre"
       );
     }
@@ -70,7 +73,9 @@ function SignIn() {
     }
     setSubmit(true);
     console.log(signIn);
+    event.target.reset();
   }
+
   useEffect(() => {
     if (submit && signIn) {
       fetchSignUp();
@@ -88,6 +93,7 @@ function SignIn() {
         onChange={(e) => setSignIn({ ...signIn, pseudo: e.target.value })}
         required
       />
+      {errorPseudo && <p className="formError">{errorPseudo}</p>}
       <label htmlFor="email">Votre mail : </label>
       <input
         type="email"
@@ -97,6 +103,7 @@ function SignIn() {
         onChange={(e) => setSignIn({ ...signIn, email: e.target.value })}
         required
       />
+      {errorMail && <p className="formError">{errorMail}</p>}
       <label htmlFor="password">Votre mot de passe : </label>
       <input
         type="password"
@@ -106,6 +113,7 @@ function SignIn() {
         onChange={(e) => setSignIn({ ...signIn, password: e.target.value })}
         required
       />
+      {errorPassword && <p className="formError">{errorPassword}</p>}
       <button>Envoyer</button>
     </form>
   );

@@ -33,7 +33,7 @@ function UserPage() {
     if (token) {
       fetchData();
     }
-  }, []);
+  }, [token]);
 
   if (loading) {
     return <div>Chargement en cours</div>;

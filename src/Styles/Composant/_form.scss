@@ -29,4 +29,8 @@
         border: none;
         margin-top: 20px;
     }
+    & .formError{
+        color: lighten($redcolor, 40%);
+        margin: 0;
+    }
 }
