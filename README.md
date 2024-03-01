@@ -14,26 +14,23 @@ Les différentes fonctionnalités :
 - Ajouter un jeu à sa liste comprenant divers info comme le nom du jeu, sa plateforme, s'il détient le jeu ou non
 - Trier sa liste, par ordre alphabétique, par plateforme, par détention du jeu ou non
 - Modifier le jeu de son choix, afin de rectifier des erreurs, ou d'indiquer s'il a obtenu le jeu
-
-\* Supprimer des jeux de sa liste
+- Supprimer des jeux de sa liste
 
 C'est mon objectif initial, bien sur une fois fini, je pourrais ajouter d'autre chose en fonction de mes envies ^^
 
-////////////////////////////////////////////////////////////////////////
-
 ## Lancer le projet
 
-Pour lancer le projet : \* le back :
-Aller dans le dossier API_JVTheque, npm install pour récupéré les nodes modules
-puis nodemon server pour lancer le serveur.
-Attention aux variable d'environnement (voir la section dédié au back)
+Pour lancer le projet :
 
-    * le front :
+- le back :
+  Aller dans le dossier API_JVTheque, npm install pour récupéré les nodes modules
+  puis nodemon server pour lancer le serveur.
+  Attention aux variable d'environnement (voir la section dédié au back)
+
+- le front :
 
 une fois le back lancé, sortez du dossier backend et rendez-vous dans le dossier Front_JVTheque puis faites la commandes npm run start (validez
 le choix d'utiliser un autre port car le port 3000 est occupé par le back).
-
-////////////////////////////////////////////////////////////////////////
 
 ## Front-End
 
@@ -52,8 +49,6 @@ Les fichiers react sont triés de la manière suivante :
 \* Un dossier "Api" qui rassemble tous ce qui touche aux appels à l'API afin de garder une structure de composant propre et si ultérieurement je dois modifier ou ajouter quelque chose en rapport avec les fonctions fetch, tout est dans ce dossier.
 
 \* Un dossier "Styles" qui contient tous les fichiers .scss et qui est grossièrement décomposé comme les fichiers jsx du reste de l'application.
-
-////////////////////////////////////////////////////////////////////
 
 ## Backend
 
@@ -78,18 +73,21 @@ J'ai également rajouter un fichier .env qui contient la clé de décryptage du 
 L'api que j'ai construite reçoit et envoie des données sous format JSON.
 Voici les différents endPoint qui sont séparé en deux branches : la branche dédié à la connexion, et la branche dédié à la récupération des jeux enregistré par l'utilisateur.
 
-- La branche pour la connexion :
-- endpoint pour enregistré un utilisateur : "/api/auth/signup" \* endpoint pour se connecter une fois son compte créer : "/api/auth/login"
+#### La branche pour la connexion :
+
+- endpoint pour enregistré un utilisateur : "/api/auth/signup"
+- endpoint pour se connecter une fois son compte créer : "/api/auth/login"
 
 Ce sont tous les deux des routes POST, sans authorisation particulière
 
-- La branche qui gère les jeux de l'utilisateur :
+#### La branche qui gère les jeux de l'utilisateur :
+
 - endpoint pour récupéré les jeux de l'utilisateur mais aussi pour que ce dernier en enregistre : "/api/game"
 
 Cette route peut être utiliser en GET pour récupéré les jeux de l'utilisateur connecter afin de les afficher via le front.
 Mais aussi, elle permet à l'utilisateur, en utilisant POST, d'enregistrer de nouveaux jeux sur son compte.
 
-    * endpoint dédié à un jeu spécifique : "/api/game/:id"
+- endpoint dédié à un jeu spécifique : "/api/game/:id"
 
 Cette route peut être utiliser avec le PUT pour modifier un jeu spécifique en cliquant sur la card du jeu en question ou avec DELETE pour supprimer le jeu de la base de donnée.
 
