@@ -9,7 +9,7 @@ function AddGame({ refreshData }) {
   const { userID } = useAuth();
 
   let newGame = {};
-  let regGame = /^[A-Za-z0-9\sÀ-ÿ:]{1,100}$/;
+  let regGame = /^[A-Za-z0-9\sÀ-ÿ:'-]{1,100}$/;
 
   //fonction de fetch
   async function gameFetch(newGame) {
@@ -59,9 +59,14 @@ function AddGame({ refreshData }) {
 
   if (token) {
     return (
-      <form onSubmit={AddNewGame} className="formContainer">
+      <form onSubmit={AddNewGame} className="formContainer text-slate-900">
         <label htmlFor="jeu">Jeu : </label>
-        <input type="text" id="game" name="game" />
+        <input
+          type="text"
+          id="game"
+          name="game"
+          className="focus:outline-none"
+        />
         {nameError && <p className="formError">{nameError}</p>}
         <label htmlFor="plateforme">Plateforme : </label>
         <select id="plateforme" name="plateforme">
@@ -79,8 +84,6 @@ function AddGame({ refreshData }) {
         <button type="submit">Ajouter</button>
       </form>
     );
-  } else {
-    //mettre un composant indiquant la redirection et la nécessisté de se co
   }
 }
 export default AddGame;

@@ -1,80 +1,75 @@
-.cardGame{
-    padding: 0;
-    height: 50px;
-    list-style: none;
-    border: 2px solid $secondarycolor;
+.cardGame {
+  height: 60px;
+  list-style: none;
+  border: 2px solid $secondarycolor;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $primarycolor;
+  margin-bottom: 15px;
+  &--item {
+    padding: 5px;
+    color: white;
+    &--1 {
+      width: 45%;
+      padding: 5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: left;
+      overflow: hidden;
+      color: white;
+    }
+    &--2 {
+      padding-top: 7px;
+      padding-right: 5px;
+    }
+  }
+  &--input {
+    padding-left: 5px;
+    margin-left: 5px;
+    width: 20%;
+    height: 30px;
+    background-color: darken($primarycolor, 10%);
+    border: none;
     border-radius: 5px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 7px -8px $secondarycolor ;
-    background-color: $primarycolor;
-    &:hover{
-        animation: scale 0.3s ease-in forwards;
+    color: white;
+    &::placeholder {
+      color: darken(white, 15%);
     }
-    &--item{
-        padding: 5px;
-        color: white;
-        width: 51px;
-        &--1{
-            width: 45%;
-            padding: 5px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            text-align: left;
-            overflow: hidden;
-            color: white;
-        }
-        &--2{
-            padding-top: 10px;
-            padding-right: 5px;
-        }
-    }
-    &--input{
-        padding-left: 5px;
-        margin-left: 5px;
-        width: 20%;
-        height: 30px;
-        background-color: darken($primarycolor, 10%);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        &::placeholder{
-            color : darken(white, 15%)
-        }
-    }
-    &--plateforme{
-        width: 20%;
-        height: 35px;
-        border-radius: 5px;
-        background-color: darken($primarycolor, 10%);
-        color: white;
-    }
-    &--obtention{
-        width: 20%;
-        height: 35px;
-        border-radius: 5px;
-        background-color: darken($primarycolor, 10%);
-        color: white;
-    }
-    &--btn{
-        width: 24px;
-        background-color: transparent;
-        border: none;
-    }
-    &--btn-1{
-        width: 24px;
-        background-color: transparent;
-        border: none;
-        margin-right: 7px;
-    }
+  }
+  &--plateforme {
+    width: 20%;
+    height: 35px;
+    border-radius: 5px;
+    background-color: darken($primarycolor, 10%);
+    color: white;
+  }
+  &--obtention {
+    width: 20%;
+    height: 35px;
+    border-radius: 5px;
+    background-color: darken($primarycolor, 10%);
+    color: white;
+  }
+  &--btn {
+    width: 24px;
+    background-color: transparent;
+    border: none;
+  }
+  &--btn-1 {
+    width: 24px;
+    background-color: transparent;
+    border: none;
+    margin-right: 7px;
+  }
 }
-.fa-circle-check{
-    color : $greencolor;
-    font-size:22px ;
+.fa-circle-check {
+  color: $greencolor;
+  font-size: 22px;
 }
-.fa-circle-xmark{
-    color : $redcolor;
-    font-size : 22px ;
+.fa-circle-xmark {
+  color: $redcolor;
+  font-size: 22px;
 }

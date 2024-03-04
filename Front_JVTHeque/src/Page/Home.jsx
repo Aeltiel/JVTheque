@@ -5,8 +5,8 @@ import LogIn from "../Container/Forms/LogIn";
 function Home() {
   return (
     <main>
-      <section className="descriptionContainer">
-        <h2 className="descriptionContainer__title">
+      <section className="mb-6 descriptionContainer ">
+        <h2 className="text-purple-800 text-center text-lg font-bold mb-2">
           Suivez et gérez votre liste de Jeux Vidéos !!
         </h2>
         <p className="descriptionContainer__text">
@@ -26,8 +26,8 @@ function Home() {
         </p>
       </section>
 
-      <div className="connexion">
-        <p className="connexion__text">Vous êtes nouveau ? Inscrivez-vous : </p>
+      <div className="text-center border-2 border-solid border-cyan-800 rounded-md mb-4">
+        <p className="mt-1.5">Vous êtes nouveau ? Inscrivez-vous : </p>
         <ModalBtn text={"S'inscrire"} content={<SignIn />} />
 
         <p className="connexion__text">Nouveau membre ? Connectez-vous : </p>
@@ -35,7 +35,7 @@ function Home() {
       </div>
 
       <section className="actualité"></section>
-      <h2 className="descriptionContainer__title">
+      <h2 className="text-purple-800 text-center text-lg font-bold mb-2">
         Les dernières actualités du site
       </h2>
       <p>En cours de construction</p>

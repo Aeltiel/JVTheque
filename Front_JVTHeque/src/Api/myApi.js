@@ -1,6 +1,6 @@
 export class MyAPI {
   static async postSignIn(form) {
-    const sendSignIn = await fetch("http://localhost:3000/api/auth/signup", {
+    const sendSignIn = await fetch("http://localhost:4000/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
@@ -14,7 +14,7 @@ export class MyAPI {
   }
 
   static async postLogIn(form) {
-    const sendLog = await fetch("http://localhost:3000/api/auth/login", {
+    const sendLog = await fetch("http://localhost:4000/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
@@ -28,7 +28,7 @@ export class MyAPI {
   }
 
   static async getGames(token) {
-    const response = await fetch("http://localhost:3000/api/game", {
+    const response = await fetch("http://localhost:4000/api/game", {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!response) {
@@ -40,7 +40,7 @@ export class MyAPI {
   }
 
   static async postGames(token, newGame) {
-    const sendGame = await fetch("http://localhost:3000/api/game", {
+    const sendGame = await fetch("http://localhost:4000/api/game", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export class MyAPI {
 
   static async putGames(token, game, modifiedGame) {
     const sendModifyGame = await fetch(
-      `http://localhost:3000/api/game/${game._id}`,
+      `http://localhost:4000/api/game/${game._id}`,
       {
         method: "PUT",
         headers: {
@@ -81,7 +81,7 @@ export class MyAPI {
 
   static async deleteGame(token, game) {
     const deleteTheGame = await fetch(
-      `http://localhost:3000/api/game/${game._id}`,
+      `http://localhost:4000/api/game/${game._id}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },

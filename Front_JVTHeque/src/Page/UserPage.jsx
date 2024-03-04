@@ -41,12 +41,12 @@ function UserPage() {
   if (token) {
     return (
       <main>
-        <h2 className="userPage__title">
+        <h2 className="text-center">
           Bienvenue {pseudo} ! Quel nouveau jeu as-tu dans ta collection ?
         </h2>
         <AddGame refreshData={refreshData} />
-        <div className="listContainer">
-          <h3 className="listContainer__title">
+        <div className="my-6">
+          <h3 className="mb-4 text-cyan-800 font-bold text-lg">
             <i className="fa-solid fa-clipboard-list"></i>
             Vos Jeux :
           </h3>

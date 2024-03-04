@@ -21,9 +21,11 @@
     "vite": "^5.1.4"
   },
   "scripts": {
-    "start": "vite --port 3001",
+    "start": "vite --port 3000",
+    "tailwind" : "npx tailwindcss -i ./src/Styles/index.css -o ./src/Styles/dist/output.css --watch",
     "build": "vite build"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",

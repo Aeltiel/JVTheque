@@ -29,8 +29,7 @@ Pour lancer le projet :
 
 - le front :
 
-une fois le back lancé, sortez du dossier backend et rendez-vous dans le dossier Front_JVTheque puis faites la commandes npm run start (validez
-le choix d'utiliser un autre port car le port 3000 est occupé par le back).
+une fois le back lancé, sortez du dossier backend et rendez-vous dans le dossier Front_JVTheque puis faites la commandes npm run start ainsi que npm run tailwind.
 
 ## Front-End
 
@@ -42,7 +41,7 @@ Les fichiers react sont triés de la manière suivante :
 
 \* Un dossier "Component" pour tous ce qui est réutilisable et donc qui ont peu de logique ou pas de logique spécifique.
 
-\* Un dossier "Container", qui rassemble tous les composants à logique spécifique, notamment tous ceux qui on un appel à l'api. Ce dossier contient un sous dossier "Forms" qui rassemble tous les composant ayant un formulaire, sauf le composant "CardGame" qui a une double fonction et que j'ai préféré laisser en dehors de ce sous dossier
+\* Un dossier "Container", qui rassemble tous les composants à logique spécifique, notamment tous ceux qui on un appel à l'api. Ce dossier contient un sous dossier "Forms" qui rassemble tous les composants ayant un formulaire, sauf le composant "CardGame" qui a une double fonction et que j'ai préféré laisser en dehors de ce sous dossier
 
 \* Un dossier "Authentification", qui rassemble les fichiers nécessaires à l'authentification d 'un utilisateur
 

@@ -9,11 +9,11 @@ import UserPage from "./Page/UserPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-zinc-100">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* ligne 16 : utiliser le component AuthRoute dans "element" pour géré l'authentification
+        {/* ligne 22 : utiliser le component AuthRoute dans "element" pour géré l'authentification
         et éviter l'erreur de route : Uncaught Error: [AuthRoute] is not a <Route> component. 
         All component children of <Routes> must be a <Route> or <React.Fragment> */}
         <Route

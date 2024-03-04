@@ -1,16 +1,4 @@
-.userPage{
-    &__title{
-        font-size: 1em;
-        text-align: center;
-    }
-}
-.listContainer{
-    margin-top: 50px;
-    &__title{
-        color: $primarycolor;
-    }
-}
-.fa-clipboard-list{
-    margin-right: 15px;
-    color: $primarycolor;
+.fa-clipboard-list {
+  margin-right: 15px;
+  color: $primarycolor;
 }

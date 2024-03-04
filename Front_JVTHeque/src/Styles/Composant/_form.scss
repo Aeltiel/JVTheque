@@ -1,36 +1,37 @@
-.formContainer{
-    text-align: center;
-    
-    & label{
-        display: inline-block;
-        width: 100%;
-        margin-bottom: 10px;
-        text-decoration: underline;
-        text-decoration-color: $secondarycolor;
-    }
-    & input{
-        width : 90%;
-        margin-bottom: 10px;
-        height : 30px;
-        border-radius: 10px;
-    }
-    & select{
-        width : 92%;
-        margin-bottom: 10px; 
-        height : 40px;
-        border-radius: 10px;
-    }
-    & button{
-        width: 50%;
-        height: 50px;
-        border-radius: 20px;
-        background-color: $secondarycolor;
-        color: white;
-        border: none;
-        margin-top: 20px;
-    }
-    & .formError{
-        color: lighten($redcolor, 40%);
-        margin: 0;
-    }
+.formContainer {
+  text-align: center;
+  color: white;
+
+  & label {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  & input {
+    width: 90%;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    height: 30px;
+    border-radius: 10px;
+    color: black;
+  }
+  & select {
+    width: 92%;
+    margin-bottom: 10px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  & button {
+    width: 50%;
+    height: 50px;
+    border-radius: 20px;
+    background-color: $secondarycolor;
+    color: white;
+    border: none;
+    margin-top: 20px;
+  }
+  & .formError {
+    color: lighten($redcolor, 40%);
+    margin: 0;
+  }
 }

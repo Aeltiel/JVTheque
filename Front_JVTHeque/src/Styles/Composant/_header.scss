@@ -1,16 +1,16 @@
-header{
-    display: flex;
-    justify-content: center;
-    font-size: 0.7em;
-    margin-bottom: 50px;
-    & .fa-gamepad{
-        margin-left: 15px;
-        margin-right: 15px;
-        align-self: center;
-        color: $secondarycolor;
-        font-size: 24px;
-    }
-    & h1{
-        text-align: center;
-    }
+header {
+  display: flex;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: bold;
+  & .fa-gamepad {
+    margin-left: 15px;
+    margin-right: 15px;
+    align-self: center;
+    color: $secondarycolor;
+    font-size: 24px;
+  }
+  & h1 {
+    text-align: center;
+  }
 }
