@@ -31,7 +31,7 @@
     margin-top: 20px;
   }
   & .formError {
-    color: lighten($redcolor, 40%);
+    color: $redcolor;
     margin: 0;
   }
 }

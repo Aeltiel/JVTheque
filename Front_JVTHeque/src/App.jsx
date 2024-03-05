@@ -6,6 +6,8 @@ import Header from "./Component/Layout/Header";
 import Footer from "./Component/Layout/Footer";
 import Home from "./Page/Home";
 import UserPage from "./Page/UserPage";
+import UserGames from "./Page/UserGames";
+import UserRetroGames from "./Page/UserRetroGame";
 
 function App() {
   return (
@@ -23,7 +25,10 @@ function App() {
               <UserPage />
             </AuthRoute>
           }
-        />
+        >
+          <Route path="/userPage/game" element={<UserGames />} />
+          <Route path="/userPage/retroGame" element={<UserRetroGames />} />
+        </Route>
       </Routes>
       <Footer />
     </div>

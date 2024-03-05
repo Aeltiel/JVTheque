@@ -4,7 +4,6 @@ import { useState } from "react";
 
 function AddGame({ refreshData }) {
   const [nameError, setNameError] = useState("");
-  const [addGameError, setAddGameError] = useState("");
   const { token } = useAuth();
   const { userID } = useAuth();
 
@@ -20,7 +19,6 @@ function AddGame({ refreshData }) {
         console.log("Félications, votre jeu est bien enregistré");
       } else {
         console.log("Une erreur d'enregistrement de ton jeu est survenu !");
-        alert("Une erreur d'enregistrement de ton jeu est survenu !");
       }
     } catch (error) {
       console.log(error);
@@ -48,13 +46,12 @@ function AddGame({ refreshData }) {
         plateforme: plateforme,
         obtention: obtenu,
       };
+      await gameFetch(newGame);
+      refreshData();
+
+      //Reset du formulaire après chaque validation
+      event.target.reset();
     }
-
-    await gameFetch(newGame);
-    refreshData();
-
-    //Reset du formulaire après chaque validation
-    event.target.reset();
   }
 
   if (token) {
@@ -74,12 +71,17 @@ function AddGame({ refreshData }) {
           <option value="Switch">Switch</option>
           <option value="DS">DS</option>
           <option value="3DS">3 DS</option>
+          <option value="3DS">PS5</option>
+          <option value="3DS">PS4</option>
+          <option value="3DS">Xbox Series</option>
+          <option value="3DS">Xbox One</option>
+          <option value="3DS">PC</option>
         </select>
         <label htmlFor="obtenu">Obtenu : </label>
         <select id="obtention" name="obtention">
           <option value=""></option>
           <option value="Oui">Oui</option>
-          <option value="Non">Non</option>
+          <option value="whishlist">Whishlist</option>
         </select>
         <button type="submit">Ajouter</button>
       </form>
