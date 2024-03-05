@@ -28,6 +28,55 @@ exports.getAllGame = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
+exports.getRetroGames = (req, res, next) => {
+  const authUser = req.auth.userId;
+  const retroConsole = [
+    "DS",
+    "3 DS",
+    "Gamecube",
+    "N64",
+    "Nes",
+    "SuperNes",
+    "PS1",
+    "PS2",
+    "PS3",
+    "Xbox",
+    "Xbox 360",
+  ];
+
+  Game.find({ userId: authUser, plateforme: retroConsole })
+    .then((games) => {
+      if (games.length === 0) {
+        res.status(404).json({ message: "Requête des jeux non authorisé !" });
+      } else {
+        res.status(200).send(games);
+      }
+    })
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.getRecentGames = (req, res, next) => {
+  const authUser = req.auth.userId;
+  const recentConsole = [
+    "Switch",
+    "PS4",
+    "PS5",
+    "Xbox One",
+    "Xbox Series",
+    "PC",
+  ];
+
+  Game.find({ userId: authUser, plateforme: recentConsole })
+    .then((games) => {
+      if (games.length === 0) {
+        res.status(404).json({ message: "Requête des jeux non authorisé !" });
+      } else {
+        res.status(200).send(games);
+      }
+    })
+    .catch((error) => res.status(400).json({ error }));
+};
+
 exports.modifyGame = (req, res, next) => {
   const gameObject = req.body;
   delete gameObject._id;

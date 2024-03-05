@@ -9,7 +9,6 @@ function DeleteGame({ game, refreshData }) {
       const gameToDelete = await MyAPI.deleteGame(token, game);
       if (gameToDelete) {
         console.log("Jeu supprimé");
-        alert("Le jeu a bien été supprimé");
       }
     } catch (error) {
       console.log(error);

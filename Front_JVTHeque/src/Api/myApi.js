@@ -39,6 +39,30 @@ export class MyAPI {
     return dataGame;
   }
 
+  static async getRetroGames(token) {
+    const response = await fetch("http://localhost:4000/api/game/retroGames", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response) {
+      console.log("Requête échouée avec le status : " + response.status);
+      return;
+    }
+    const dataGame = await response.json();
+    return dataGame;
+  }
+
+  static async getRecentGames(token) {
+    const response = await fetch("http://localhost:4000/api/game/recentGames", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response) {
+      console.log("Requête échouée avec le status : " + response.status);
+      return;
+    }
+    const dataGame = await response.json();
+    return dataGame;
+  }
+
   static async postGames(token, newGame) {
     const sendGame = await fetch("http://localhost:4000/api/game", {
       method: "POST",

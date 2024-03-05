@@ -82,6 +82,7 @@ Ce sont tous les deux des routes POST, sans authorisation particulière
 #### La branche qui gère les jeux de l'utilisateur :
 
 - endpoint pour récupéré les jeux de l'utilisateur mais aussi pour que ce dernier en enregistre : "/api/game"
+- endpoint pour récupéré les jeux "rétro" : "/api/game/retroGames"
 
 Cette route peut être utiliser en GET pour récupéré les jeux de l'utilisateur connecter afin de les afficher via le front.
 Mais aussi, elle permet à l'utilisateur, en utilisant POST, d'enregistrer de nouveaux jeux sur son compte.
