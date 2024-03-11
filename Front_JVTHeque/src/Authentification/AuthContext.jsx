@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useState } from "react";
 
 /*Ce fichier me permet de créer un hook personnalisé qui va géré le système d'authentification
 de l'application, via le createContext et le useContext.
@@ -15,7 +14,6 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [userID, setUserID] = useState(localStorage.getItem("userId") || "");
   const [pseudo, setPseudo] = useState(localStorage.getItem("pseudo") || "");
-  //const navigate = useNavigate();
 
   //fonction pour enregistré le token dans le local storage
   function updateToken(newToken, newId, newPseudo) {
@@ -37,23 +35,6 @@ export function AuthProvider({ children }) {
     setUserID("");
     setPseudo("");
   }
-
-  /*useEffect(() => {
-    function validateToken() {
-      try {
-        const decodeToken = jwt_decode(token); //permet de décoder le token
-        const expireToken = Date.now() >= decodeToken.exp * 1000; //permet de comparé la date actuelle avec la date du token
-        if (expireToken) {
-          logOut();
-          navigate("/");
-        }
-      } catch (error) {
-        console.error("Erreur lors du décodage du token : " + error);
-      }
-    }
-
-    validateToken();
-  }, [token]);*/
 
   return (
     <AuthContext.Provider
