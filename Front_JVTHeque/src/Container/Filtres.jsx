@@ -1,29 +1,45 @@
 import { useGame } from "./GameContext/GameContext";
+import FiltreBtn from "./FiltreBtn";
 
 function Filtres() {
-  const { gameFilter } = useGame();
+  const { resetFilter, resetFiltreActif } = useGame();
 
-  function haveGamesFilter(obtentionType) {
-    gameFilter({ obtention: obtentionType });
-  }
   return (
     <div className="my-6">
-      <p>Tu veux trier tes jeux en fonction de : </p>
-      <button
-        onClick={() => {
-          haveGamesFilter("Oui");
-        }}
-      >
-        Jeux obtenus
-      </button>
-      <button
-        onClick={() => {
-          haveGamesFilter("whishlist");
-        }}
-      >
-        {" "}
-        Ta Whishlist
-      </button>
+      <p className="text-base">Tu veux trier tes jeux en fonction de : </p>
+      <div className="w-full flex flex-wrap justify-between my-3.5">
+        {/*<button
+          className={`btn-filtre ${
+            gameFiltres.obtention === "Oui" ? "activeFiltre" : ""
+          }`}
+          onClick={() => {
+            haveGamesFilter("Oui");
+          }}
+        >
+          Jeux obtenus
+        </button>
+        <button
+          className={`btn-filtre ${
+            gameFiltres.obtention === "whishlist" ? "activeFiltre" : ""
+          }`}
+          onClick={() => {
+            haveGamesFilter("whishlist");
+          }}
+        >
+          {" "}
+          Ta Whishlist
+        </button>*/}
+        <FiltreBtn name={"Jeux obtenus"} obtentionType={"Oui"} />
+        <FiltreBtn name={"whishlist"} obtentionType={"whishlist"} />
+        <button
+          onClick={() => {
+            resetFilter();
+            resetFiltreActif();
+          }}
+        >
+          <i className="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
     </div>
   );
 }

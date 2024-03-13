@@ -28,3 +28,13 @@
     border-radius: 0;
   }
 }
+
+.btn-filtre {
+  border: 2px solid $primarycolor;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.activeFiltre {
+  background-color: lighten($primarycolor, 50%);
+}

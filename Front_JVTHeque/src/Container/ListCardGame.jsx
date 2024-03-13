@@ -3,17 +3,33 @@ import { useEffect, useState } from "react";
 import { useGame } from "./GameContext/GameContext";
 
 function ListCardGame({ gameData, refreshData }) {
-  const { gameFiltres, gameFiltered } = useGame();
+  const { gameFiltres } = useGame();
   const [gameTrier, setGameTrier] = useState([]);
 
+  function gameFiltered() {
+    if (gameFiltres) {
+      gameData.filter((game) => {
+        if (game.obtention === gameFiltres.obtention) {
+          let haveGames = [game];
+          setGameTrier(haveGames);
+        }
+        if (game.plateforme === gameFiltres.plateforme) {
+          let consoleGames = [game];
+          setGameTrier(consoleGames);
+        }
+      });
+    }
+  }
+
   useEffect(() => {
-    setGameTrier(gameFiltered());
+    gameFiltered();
   }, [gameFiltres]);
 
-  console.log(gameFiltres);
-  console.log(gameTrier);
+  const gameDisplay =
+    gameFiltres.obtention === null && gameFiltres.plateforme === null
+      ? gameData
+      : gameTrier;
 
-  const gameDisplay = gameFiltres === null ? gameTrier : gameData;
   return (
     <div>
       {Array.isArray(gameDisplay) &&
