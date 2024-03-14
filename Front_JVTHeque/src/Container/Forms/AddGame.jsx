@@ -70,18 +70,18 @@ function AddGame({ refreshData }) {
           <option value="">Choisi la plateforme de ton jeu</option>
           <option value="Switch">Switch</option>
           <option value="DS">DS</option>
-          <option value="3DS">3 DS</option>
-          <option value="3DS">PS5</option>
-          <option value="3DS">PS4</option>
+          <option value="3DS">3DS</option>
+          <option value="PS5">PS5</option>
+          <option value="PS4">PS4</option>
           <option value="3DS">Xbox Series</option>
-          <option value="3DS">Xbox One</option>
-          <option value="3DS">PC</option>
+          <option value="Xbox Series">Xbox One</option>
+          <option value="PC">PC</option>
         </select>
         <label htmlFor="obtenu">Obtenu : </label>
         <select id="obtention" name="obtention">
           <option value=""></option>
-          <option value="Oui">Oui</option>
-          <option value="whishlist">Whishlist</option>
+          <option value="Jeu obtenu">Jeu obtenu</option>
+          <option value="Whishlist">Whishlist</option>
         </select>
         <button type="submit">Ajouter</button>
       </form>

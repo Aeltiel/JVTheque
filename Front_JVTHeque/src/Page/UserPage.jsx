@@ -5,12 +5,17 @@ import NavBarSecond from "../Component/Layout/NavBarSecond";
 import NotFound from "../Component/NotFound";
 import Filtres from "../Container/Filtres";
 import ListCardGame from "../Container/ListCardGame";
+import { useEffect } from "react";
 
 function UserPage() {
   const location = useLocation();
   const { token } = useAuth();
   const { pseudo } = useAuth();
   const { allGames, loading, refreshAllData } = useGame();
+
+  useEffect(() => {
+    refreshAllData();
+  }, []);
 
   //récupère l'url pour un affichage conditionnel
   const currentPath = location.pathname;

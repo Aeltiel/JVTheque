@@ -32,7 +32,7 @@ exports.getRetroGames = (req, res, next) => {
   const authUser = req.auth.userId;
   const retroConsole = [
     "DS",
-    "3 DS",
+    "3DS",
     "Gamecube",
     "N64",
     "Nes",

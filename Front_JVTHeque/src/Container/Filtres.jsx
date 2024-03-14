@@ -29,8 +29,9 @@ function Filtres() {
           {" "}
           Ta Whishlist
         </button>*/}
-        <FiltreBtn name={"Jeux obtenus"} obtentionType={"Oui"} />
-        <FiltreBtn name={"whishlist"} obtentionType={"whishlist"} />
+        <FiltreBtn name={"Jeux obtenus"} obtentionType={"Jeu obtenu"} />
+        <FiltreBtn name={"Whishlist"} obtentionType={"whishlist"} />
+
         <button
           onClick={() => {
             resetFilter();

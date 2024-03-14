@@ -7,20 +7,16 @@ function ListCardGame({ gameData, refreshData }) {
   const [gameTrier, setGameTrier] = useState([]);
 
   function gameFiltered() {
-    if (gameFiltres) {
-      gameData.filter((game) => {
+    let tri = [];
+    if (gameFiltres !== null) {
+      gameData.forEach((game) => {
         if (game.obtention === gameFiltres.obtention) {
-          let haveGames = [game];
-          setGameTrier(haveGames);
-        }
-        if (game.plateforme === gameFiltres.plateforme) {
-          let consoleGames = [game];
-          setGameTrier(consoleGames);
+          tri.push(game);
         }
       });
     }
+    setGameTrier(tri);
   }
-
   useEffect(() => {
     gameFiltered();
   }, [gameFiltres]);
