@@ -13,9 +13,9 @@ function UserPage() {
   const { pseudo } = useAuth();
   const { allGames, loading, refreshAllData } = useGame();
 
-  useEffect(() => {
+  /*useEffect(() => {
     refreshAllData();
-  }, []);
+  }, []);*/
 
   //récupère l'url pour un affichage conditionnel
   const currentPath = location.pathname;

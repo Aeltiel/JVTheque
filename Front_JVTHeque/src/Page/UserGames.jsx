@@ -1,38 +1,16 @@
-import { useState, useEffect } from "react";
 import { useAuth } from "../Authentification/AuthContext";
-import { MyAPI } from "../Api/myApi";
+import { useGame } from "../Container/GameContext/GameContext";
 import AddGame from "../Container/Forms/AddGame";
 import CardGame from "../Container/CardGame";
 import NotFound from "../Component/NotFound";
+import Filtres from "../Container/Filtres";
+import ListCardGame from "../Container/ListCardGame";
 
 function UserGames() {
-  const [gameData, setGameData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { token } = useAuth();
+  const { recentGames, refreshRecentData, loading } = useGame();
 
-  //fonction d'appel à mon api
-  async function fetchData() {
-    try {
-      const dataGame = await MyAPI.getRecentGames(token);
-      setGameData(dataGame);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  }
-
-  //fonction de callback pour rafraichir les données suite à l'ajout d'un jeu
-  async function refreshData() {
-    setLoading(true);
-    await fetchData();
-  }
-
-  useEffect(() => {
-    if (token) {
-      fetchData();
-    }
-  }, [token]);
+  console.log(recentGames);
 
   if (loading) {
     return <div>Chargement en cours</div>;
@@ -40,14 +18,17 @@ function UserGames() {
   if (token) {
     return (
       <>
-        <AddGame refreshData={refreshData} />
+        <AddGame refreshData={refreshRecentData} />
+
+        <Filtres />
+
         <div className="my-6">
           <h3 className="mb-4 text-cyan-800 font-bold text-lg">
             <i className="fa-solid fa-clipboard-list"></i>
             Tes Jeux :
           </h3>
-          {!Array.isArray(gameData) ||
-          (Array.isArray(gameData) && gameData.length === 0) ? (
+          {!Array.isArray(recentGames) ||
+          (Array.isArray(recentGames) && recentGames.length === 0) ? (
             <NotFound
               text={
                 "Désolé, il semblerait que tu n'ai pas de jeu enregistré pour le moment. Rajoutes-en un !"
@@ -55,13 +36,10 @@ function UserGames() {
             />
           ) : (
             <>
-              {gameData.map((game) => (
-                <CardGame
-                  key={game._id}
-                  dataGame={game}
-                  refreshData={refreshData}
-                />
-              ))}
+              <ListCardGame
+                gameData={recentGames}
+                refreshData={refreshRecentData}
+              />
             </>
           )}
         </div>

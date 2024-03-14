@@ -2,7 +2,7 @@ import { useAuth } from "../../Authentification/AuthContext";
 import { MyAPI } from "../../Api/myApi";
 import { useState } from "react";
 
-function AddGame({ refreshData }) {
+function AddRetroGame({ refreshData }) {
   const [nameError, setNameError] = useState("");
   const { token, userID } = useAuth();
 
@@ -65,14 +65,26 @@ function AddGame({ refreshData }) {
         />
         {nameError && <p className="formError">{nameError}</p>}
         <label htmlFor="plateforme">Plateforme : </label>
-        <select id="plateforme" name="plateforme">
+        <select id="plateforme" name="plateforme" className="console">
           <option value="">Choisi la plateforme de ton jeu</option>
-          <option value="Switch">Switch</option>
-          <option value="PS4">PS4</option>
-          <option value="PS5">PS5</option>
-          <option value="Xbox Series">Xbox One</option>
-          <option value="Xbox Series">Xbox Series</option>
-          <option value="PC">PC</option>
+          <option value="Nes">Nes</option>
+          <option value="Super Nes">Super Nes</option>
+          <option value="N64">N64</option>
+          <option value="Gamecube">Gamecube</option>
+          <option value="Gameboy">Gameboy</option>
+          <option value="Gameboy Advance">Gameboy Advance</option>
+          <option value="DS">DS</option>
+          <option value="3DS">3DS</option>
+          <option value="PS1">PS1</option>
+          <option value="PS2">PS2</option>
+          <option value="PS3">PS3</option>
+          <option value="PSP">PSP</option>
+          <option value="PS Vita">PS Vita</option>
+          <option value="Xbox">Xbox</option>
+          <option value="Xbox 360">Xbox 360</option>
+          <option value="Megadrive">Mégadrive</option>
+          <option value="Dreamcast">Dreamcast</option>
+          <option value="Saturn">Saturn</option>
         </select>
         <label htmlFor="obtenu">Obtenu : </label>
         <select id="obtention" name="obtention">
@@ -85,4 +97,4 @@ function AddGame({ refreshData }) {
     );
   }
 }
-export default AddGame;
+export default AddRetroGame;

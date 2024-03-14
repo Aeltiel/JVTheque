@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../Authentification/AuthContext";
 import { MyAPI } from "../Api/myApi";
-import AddGame from "../Container/Forms/AddGame";
+import AddRetroGame from "../Container/Forms/AddRetroGame";
 import CardGame from "../Container/CardGame";
 import NotFound from "../Component/NotFound";
 
@@ -42,7 +42,7 @@ function UserRetroGames() {
   if (token) {
     return (
       <>
-        <AddGame refreshData={refreshData} />
+        <AddRetroGame refreshData={refreshData} />
         <div className="my-6">
           <h3 className="mb-4 text-cyan-800 font-bold text-lg">
             <i className="fa-solid fa-clipboard-list"></i>

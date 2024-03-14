@@ -86,8 +86,8 @@ function CardGame({ refreshData, dataGame }) {
             onChange={(e) => setObtention(e.target.value)}
           >
             <option value="">{dataGame.obtention}</option>
-            <option value="Oui">Oui</option>
-            <option value="Non">Non</option>
+            <option value="Jeu obtenu">Jeu obtenu</option>
+            <option value="Wishlist">Wishlist</option>
           </select>
           <button className="cardGame--btn" type="submit">
             <i className="fa-solid fa-circle-check"></i>

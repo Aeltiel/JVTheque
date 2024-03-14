@@ -2,7 +2,7 @@ import { useGame } from "./GameContext/GameContext";
 import FiltreBtn from "./FiltreBtn";
 
 function Filtres() {
-  const { resetFilter, resetFiltreActif } = useGame();
+  const { resetFilter } = useGame();
 
   return (
     <div className="my-6">
@@ -30,12 +30,11 @@ function Filtres() {
           Ta Whishlist
         </button>*/}
         <FiltreBtn name={"Jeux obtenus"} obtentionType={"Jeu obtenu"} />
-        <FiltreBtn name={"Whishlist"} obtentionType={"whishlist"} />
+        <FiltreBtn name={"Whishlist"} obtentionType={"Wishlist"} />
 
         <button
           onClick={() => {
             resetFilter();
-            resetFiltreActif();
           }}
         >
           <i className="fa-solid fa-circle-xmark"></i>

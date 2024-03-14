@@ -14,7 +14,6 @@ export function GameProvider({ children }) {
   const [recentGames, setRecentGame] = useState([]);
   const [retroGames, setRetroGames] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeFiltre, setActiveFiltre] = useState(false);
   const { token } = useAuth();
   const [gameFiltres, setGameFiltres] = useState({
     obtention: null,
@@ -90,11 +89,6 @@ export function GameProvider({ children }) {
     });
   }
 
-  //reset du state du filtre actif pour géré l'apparance du bouton
-  function resetFiltreActif() {
-    setActiveFiltre(false);
-  }
-
   return (
     <gameContext.Provider
       value={{
@@ -108,7 +102,6 @@ export function GameProvider({ children }) {
         gameFilter,
         gameFiltres,
         resetFilter,
-        resetFiltreActif,
       }}
     >
       {children}

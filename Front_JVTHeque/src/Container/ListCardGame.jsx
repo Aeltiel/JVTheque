@@ -10,7 +10,10 @@ function ListCardGame({ gameData, refreshData }) {
     let tri = [];
     if (gameFiltres !== null) {
       gameData.forEach((game) => {
-        if (game.obtention === gameFiltres.obtention) {
+        if (
+          game.obtention === gameFiltres.obtention ||
+          game.plateforme === gameFiltres.plateforme
+        ) {
           tri.push(game);
         }
       });
@@ -20,6 +23,8 @@ function ListCardGame({ gameData, refreshData }) {
   useEffect(() => {
     gameFiltered();
   }, [gameFiltres]);
+
+  useEffect(() => {}, []);
 
   const gameDisplay =
     gameFiltres.obtention === null && gameFiltres.plateforme === null
