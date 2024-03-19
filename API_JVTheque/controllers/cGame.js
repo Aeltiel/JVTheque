@@ -31,15 +31,19 @@ exports.getAllGame = (req, res, next) => {
 exports.getRetroGames = (req, res, next) => {
   const authUser = req.auth.userId;
   const retroConsole = [
-    "DS",
-    "3DS",
-    "Gamecube",
-    "N64",
     "Nes",
     "SuperNes",
+    "N64",
+    "Gamecube",
+    "Gameboy",
+    "Gameboy Advance",
+    "DS",
+    "3DS",
     "PS1",
     "PS2",
     "PS3",
+    "PSP",
+    "PS Vita",
     "Xbox",
     "Xbox 360",
   ];

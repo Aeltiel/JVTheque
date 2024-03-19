@@ -70,7 +70,7 @@ function AddGame({ refreshData }) {
           <option value="Switch">Switch</option>
           <option value="PS4">PS4</option>
           <option value="PS5">PS5</option>
-          <option value="Xbox Series">Xbox One</option>
+          <option value="Xbox One">Xbox One</option>
           <option value="Xbox Series">Xbox Series</option>
           <option value="PC">PC</option>
         </select>

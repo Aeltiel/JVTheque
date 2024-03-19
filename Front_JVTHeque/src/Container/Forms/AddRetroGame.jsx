@@ -65,7 +65,7 @@ function AddRetroGame({ refreshData }) {
         />
         {nameError && <p className="formError">{nameError}</p>}
         <label htmlFor="plateforme">Plateforme : </label>
-        <select id="plateforme" name="plateforme" className="console">
+        <select id="plateforme" name="plateforme">
           <option value="">Choisi la plateforme de ton jeu</option>
           <option value="Nes">Nes</option>
           <option value="Super Nes">Super Nes</option>
@@ -82,9 +82,6 @@ function AddRetroGame({ refreshData }) {
           <option value="PS Vita">PS Vita</option>
           <option value="Xbox">Xbox</option>
           <option value="Xbox 360">Xbox 360</option>
-          <option value="Megadrive">Mégadrive</option>
-          <option value="Dreamcast">Dreamcast</option>
-          <option value="Saturn">Saturn</option>
         </select>
         <label htmlFor="obtenu">Obtenu : </label>
         <select id="obtention" name="obtention">
