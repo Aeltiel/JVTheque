@@ -8,7 +8,7 @@ function ListCardGame({ gameData, refreshData }) {
 
   function gameFiltered() {
     let tri = [];
-    if (gameFiltres !== null) {
+    if (gameFiltres.otention !== null || gameFiltres.plateforme !== null) {
       gameData.forEach((game) => {
         if (
           game.obtention === gameFiltres.obtention ||
@@ -20,6 +20,8 @@ function ListCardGame({ gameData, refreshData }) {
     }
     setGameTrier(tri);
   }
+  console.log(gameTrier);
+  console.log(gameFiltres);
   useEffect(() => {
     gameFiltered();
   }, [gameFiltres]);

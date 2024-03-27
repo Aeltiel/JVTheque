@@ -23,7 +23,9 @@ function NavBar() {
 
   //fonction d'ouverture du menu quand on clique sur l'icon user dans le menu
   function close() {
-    if (open === true) {
+    if (!open) {
+      setOpen(true);
+    } else {
       setOpen(false);
     }
   }
@@ -58,7 +60,6 @@ function NavBar() {
       <button
         className="navLinkBtn"
         onClick={() => {
-          setOpen(true);
           close();
         }}
       >

@@ -10,8 +10,6 @@ function UserGames() {
   const { token } = useAuth();
   const { recentGames, refreshRecentData, loading } = useGame();
 
-  console.log(recentGames);
-
   if (loading) {
     return <div>Chargement en cours</div>;
   }

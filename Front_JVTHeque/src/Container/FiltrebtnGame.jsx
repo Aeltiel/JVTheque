@@ -5,7 +5,7 @@ function FiltrebtnGame({ name, plateformeType }) {
 
   //fonction pour le bouton qui permet d'enregistré le filtre sélectionné
   function haveGamesFilter(plateformeType) {
-    gameFilter({ plateforme: plateformeType });
+    gameFilter({ obtention: null, plateforme: plateformeType });
   }
 
   return (

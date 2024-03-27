@@ -5,7 +5,7 @@ function FiltreBtn({ name, obtentionType }) {
 
   //fonction pour le bouton qui permet d'enregistré le filtre sélectionné
   function haveGamesFilter(obtentionType) {
-    gameFilter({ obtention: obtentionType });
+    gameFilter({ obtention: obtentionType, plateforme: null });
   }
 
   return (

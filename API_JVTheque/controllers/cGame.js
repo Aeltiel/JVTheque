@@ -35,6 +35,8 @@ exports.getRetroGames = (req, res, next) => {
     "SuperNes",
     "N64",
     "Gamecube",
+    "Wii",
+    "Wii U",
     "Gameboy",
     "Gameboy Advance",
     "DS",

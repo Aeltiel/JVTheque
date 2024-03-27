@@ -71,6 +71,8 @@ function AddRetroGame({ refreshData }) {
           <option value="Super Nes">Super Nes</option>
           <option value="N64">N64</option>
           <option value="Gamecube">Gamecube</option>
+          <option value="Wii">Wii</option>
+          <option value="Wii U">Wii U</option>
           <option value="Gameboy">Gameboy</option>
           <option value="Gameboy Advance">Gameboy Advance</option>
           <option value="DS">DS</option>
